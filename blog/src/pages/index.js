@@ -25,7 +25,7 @@ class IndexPage extends React.Component {
         {/* <p>Welcome to my blog! </p> */}
           {/* You are on your home page.</p> */}
         <p>
-          I'm a programmer interested in iOS development and human-computer interaction. I'm in <a href="https://omscs.gatech.edu/" target="_blank">grad school at Georgia Tech</a> getting a Master's in CS with a concentation in machine learning. I'm obssessed with self-learing and furthering my education.
+          I'm a programmer interested in iOS development and human-computer interaction. I'm in <a href="https://omscs.gatech.edu/" target="_blank" rel="noreferrer">grad school at Georgia Tech</a> getting a Master's in CS with a concentation in machine learning. I'm obssessed with self-learing and furthering my education.
         </p>
         <p>This blog serves as a record of my projects, accomplishments, and learnings.</p>
         <Link to="/blog/">

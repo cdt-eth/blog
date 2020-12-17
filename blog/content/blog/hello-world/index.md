@@ -1,27 +1,13 @@
 ---
-title: This is an editing Test!
-date: "2020-05-01T22:12:03.284Z"
+title: This Blog's Purpose
+date: "2020-12-17T22:12:03.284Z"
 ---
 
-I'm changing this to test editing and MDX blog.
+Welcome to the blog! I'll use this as a repository for several things. First of all, it'll be a place to highlight projects and work accomplishments. I'll showcase both my wins at work and my personal projects I've been developing in my spare time.
 
-I'm sure I'll write a lot more interesting things in the future.
+> "For me, coding has always been a design tool to help me ask "What if?" If the code doesn't do that, frankly I don’t find it that interesting. To me, it's like being interested in a paintbrush but not in art or being interested in a guitar, but not in music."
+> ~[@partytimeHXLNT](https://twitter.com/partytimeHXLNT)
 
-Oh, and here's a great quote from this Wikipedia on
-[salted duck eggs](http://en.wikipedia.org/wiki/Salted_duck_egg).
+I've really enjoyed Gatsby & Netlify so far in starting this blog. It's surprisingly easy to get up and going. Even though it's been a while since I've written Javscript (it's been mostly C++ & Swift recently I'm excited to have a reason to write React again.
 
-> A salted duck egg is a Chinese preserved food product made by soaking duck
-> eggs in brine, or packing each egg in damp, salted charcoal. In Asian
-> supermarkets, these eggs are sometimes sold covered in a thick layer of salted
-> charcoal paste. The eggs may also be sold with the salted paste removed,
-> wrapped in plastic, and vacuum packed. From the salt curing process, the
-> salted duck eggs have a briny aroma, a gelatin-like egg white and a
-> firm-textured, round yolk that is bright orange-red in color.
-
-![Chinese Salty Egg](./salty_egg.jpg)
-
-```js
-function helloWorld() {
-  console.log("Hello World!")
-}
-```
+![Javascript](./javascript.gif)
