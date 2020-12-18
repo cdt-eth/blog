@@ -1,6 +1,6 @@
 ---
 title: This Blog's Purpose
-date: "2020-12-17T22:12:03.284Z"
+date: "2020-11-17T22:12:03.284Z"
 ---
 
 Welcome to the blog! I'll use this as a repository for several things. First of all, it'll be a place to highlight projects and work accomplishments. I'll showcase both my wins at work and my personal projects I've been developing in my spare time.
