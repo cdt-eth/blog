@@ -1,13 +1,8 @@
 ---
-title: My Second Post
+title: Leetcode - Two Sum
 date: "2020-12-17T23:46:37.121Z"
 ---
 
-Wow! I love blogging so much already.
+I'm working through Leetcode problems and will be blogging my results and thoughts from processing these problems.
 
-Did you know that "despite its name, salted duck eggs can also be made from
-chicken eggs, though the taste and texture will be somewhat different, and the
-egg yolk will be less rich."?
-([Wikipedia Link](http://en.wikipedia.org/wiki/Salted_duck_egg))
-
-Yeah, I didn't either.
+([Two Sum Problem](https://leetcode.com/problems/two-sum/))
