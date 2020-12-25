@@ -1,10 +1,13 @@
 ---
 path: awesome-images
 date: 2020-06-06T01:22:55.506Z
-title: Awesome Images
+title: Luke's Awesome Images
 description: Fix for gatsby-plugin-mdx and gatsby-remark-images
 ---
-![Great Gatsby](/../assets/great2.jpg "Great Gatsby")
+
+<!-- ![Great Gatsby](/../assets/great2.jpg "Great Gatsby") -->
+
+![Great Gatsby](/../assets/christian.jpg "Great Gatsby")
 
 ## Netlify CMS Media Configuration
 
@@ -27,7 +30,7 @@ So digging a little deeper, it looks like Gatsby only looks for "subplugins" at 
 
 If you try this…
 
-```javascript
+```
 {
   resolve: 'gatsby-plugin-mdx',
   options: {
