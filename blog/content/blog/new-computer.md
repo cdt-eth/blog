@@ -1,8 +1,8 @@
 ---
-path: awesome-images
-date: 2020-06-06T01:22:55.506Z
-title: Awesome Images
-description: Fix for gatsby-plugin-mdx and gatsby-remark-images
+path: new-computer
+date: 2020-12-28T01:22:55.506Z
+title: New Computer Set
+description: Everything I installed on my new Mac M1 Pro
 ---
 
 
