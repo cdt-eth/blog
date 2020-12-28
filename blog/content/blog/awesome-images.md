@@ -5,7 +5,6 @@ title: Awesome Images
 description: Fix for gatsby-plugin-mdx and gatsby-remark-images
 ---
 
-<!-- ![Great Gatsby](/../assets/great2.jpg "Great Gatsby") -->
 
 ![Great Gatsby](/../assets/christian.jpg "Great Gatsby")
 
