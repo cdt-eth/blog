@@ -2,7 +2,7 @@
 path: new-computer
 date: 2020-12-28T01:22:55.506Z
 title: New Computer Setup
-description: Everything I installed on my new Mac M1 Pro
+description: Everything I installed on my new Mªac M1 Pro
 ---
 
 I upgraded computers from the 2015 Macbok Pro to the new M1 Pro. This is my first time setting up a new computer since I've been coding so I didn't use the Apple Migration Assistant because I wanted to learn how to do this again from scratch. This has the benefit of me learning to do this again, but also, hopefully I won't over-add packages I don't need this time. My last computer definitely had some bloat.
