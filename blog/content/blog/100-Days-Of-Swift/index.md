@@ -31,3 +31,7 @@ func greet(_ person: String) {
 
 greet("Taylor")
 ```
+
+## Day 6 & 7
+
+Closures.
