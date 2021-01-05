@@ -5,4 +5,4 @@ title: YNAB
 description: 2021 Budgeting
 ---
 
-I'm starting this year by budgeting with [YNAB](https://www.youneedabudget.com).
+I'm starting this year by budgeting with [YNAB](https://www.youneedabudget.com), and it does take some time to get used to it.
