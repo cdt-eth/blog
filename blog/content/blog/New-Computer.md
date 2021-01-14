@@ -31,7 +31,7 @@ I audited all the old apps I installed on my old computer and then watched a cou
 
 ## Terminal
 
-I installed Homebrew, but using Rosetta since Apple's ARM machines are compatible with Homebrew, yet.
+I installed Homebrew, but using Rosetta since Apple's ARM machines are compatible with Homebrew, yet. I found [this website](https://isapplesiliconready.com) that will alert developers & designers when certain programs are working on Apple Silicon vs Rosetta 2.
 
 The first thins I did was change my shell from zsh to bash. Then I created a `.bash_profile` and changed it to:
 ```bash
