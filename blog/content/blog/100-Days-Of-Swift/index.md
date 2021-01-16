@@ -34,4 +34,5 @@ greet("Taylor")
 
 ## Day 6 & 7
 
-Closures.
+Closures. Probably the thing most devs complain about in the learning process. It seems to stump a lot of people.
+
