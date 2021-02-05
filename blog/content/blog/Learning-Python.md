@@ -30,7 +30,30 @@ I'll be documenting so of the challenges I've overcome from my assignments here 
 <h6 style="margin-top: 15px">This assignment</h6>
 `test`
 
-So
+I had a couple takeaways from this first Python assignment. I learned how to read input files and write outputs files. However, the input files were given and names _in1.txt, in2.txt, in3.txt..._ until 5 and I was tasked with opening them, reading the data, running the data through an algorithm, and then writing the answer to a new (and non-existent) output file. 
+```python
+inPrefix = "in"
+outPrefix = "out"
+for i in range(1, 6):
+    inFile = inPrefix + str(i) + ".txt"
+    outFile = outPrefix + str(i) + ".txt"
+```
+So this for loop read `in` + `1` + `.txt` and and changed `in` for `out` when creating the outfile. Then `1` was incremented to `2` by the for loop, and henceforth the new output file would be `out2.txt`, which is the desired result.
+
+Another unique Python trick I learned was `format`. So when a text file contains numbers, those numbers are technically strings. So I read the numbers, converted them to integers using
+- `arr = fileLines[2]`
+    - read the 2nd line (array of numbers) and save to `arr` variable
+- `num_arr = [int(j) for j in arr.split()]`
+    - list comprehension to convert every element in array from a string to an integer
+
+Then my if statement can take an integer and if I found an integer match, I converted that number to a stringified verion of that number and saved it to a variable `answer` so I can write that answer to the output file. It's important to remember that you cannot write integers to files, only string versions _OF_ said integer(s).
+```python
+if num_arr[a]*2 == target:
+    a = str(num_arr[a])
+    target = str(target)
+    answer = "{}+{}={}".format(a,a,target)
+```
+So format is cool because I create a placeholder for a variable with parentheses inside a string `{}`, and the with a `.format()` I can add as many variables as I have parentheses. I did this, instead of hard-coding a string answer because I need to to be dynamic. That's the whole point of the program. I want to write my string answer to my output file _*no matter*_ what set of numbers my program takes in! So my output string has variable placeholders and I use `.format()` and the placeholder parentheses to insert my dynamic answer(s) into my program's output.
 
 * * *
 
