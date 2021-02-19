@@ -1,0 +1,99 @@
+@import url("https://use.typekit.net/uso4pve.css");
+@import url("http://fonts.cdnfonts.com/css/apple-garamond");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap");
+
+p {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 400;
+}
+
+p,
+a,
+.footerText,
+.intro h2 {
+  font-family: "Noto Sans JP";
+  font-weight: 400;
+}
+
+a {
+  font-weight: 700;
+  box-shadow: none;
+}
+
+a:hover {
+  box-shadow: 0 1px 0 0 currentColor;
+  transition: 0.3s;
+}
+
+.siteTitle {
+  font-family: nimbus-sans, sans-serif;
+  font-family: "Apple Garamond Light", sans-serif;
+  font-family: "Apple Garamond", sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.green {
+  color: #307432;
+}
+.orange {
+  color: #c6400a;
+}
+.yellow {
+  color: #dac716;
+}
+.purple {
+  color: #03406d;
+}
+.pink {
+  color: #c92967;
+}
+
+.intro {
+  padding-bottom: 25px;
+  display: table;
+}
+
+.intro .introItem {
+  display: table-row;
+  margin: 10px 0px 0px 0px;
+}
+
+.introItem span {
+  float: right;
+  padding-left: 10px;
+}
+
+.introItem p {
+  display: table-cell;
+  width: max-content;
+  margin-bottom: 0;
+}
+
+.introItem a {
+  display: table-cell;
+  display: inherit;
+  text-align: left;
+}
+
+.introItem a span {
+  width: max-content;
+}
+
+.homeCTA {
+  display: inline-block;
+}
+
+.homeCTA img {
+  margin-bottom: 0px;
+}
+.homeCTA span {
+  float: right;
+}
+
+.homeCTA,
+.introItem a {
+  box-shadow: none;
+}

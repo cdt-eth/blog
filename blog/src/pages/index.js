@@ -3,32 +3,97 @@ import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Button from "../components/button"
+// import Button from "../components/button"
 
 class IndexPage extends React.Component {
   render() {
-    const siteTitle = "Christian Turner's Dev Blog"
+    // const siteTitle = "Christian."
+    const siteTitle = "Apple"
 
     return (
-      <Layout location={this.props.location} title={siteTitle} >
+      <Layout location={this.props.location} title={siteTitle}>
         <SEO
           title="Home"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
-        <img style={{ margin: 0, height:250 }} src="./christian.jpg" alt="christian" />
-        <h1>
-          Hey there{" "}
-          <span role="img" aria-label="lightning emoji">
-            ⚡️
-          </span>
-        </h1>
-       
+        {/* <img
+          style={{ margin: 0, height: 250 }}
+          src="./christian.jpg"
+          alt="christian"
+        /> */}
+
+        <div className="intro">
+          <div className="introItem">
+            <p>
+              web ops <span>@</span>
+            </p>
+            <a href="https://kikcorp.com/" rel="noreferrer" target="_blank">
+              biolab
+            </a>
+          </div>
+          <div className="introItem">
+            <p>
+              github <span>@</span>
+            </p>
+            <a
+              href="https://github.com/christiandavidturner"
+              rel="noreferrer"
+              target="_blank"
+            >
+              christiandavidturner{" "}
+            </a>
+          </div>
+          <div className="introItem">
+            <p>
+              twitter <span>@</span>
+            </p>
+            <a
+              href="https://twitter.com/imcdt"
+              rel="noreferrer"
+              target="_blank"
+            >
+              imcdt{" "}
+            </a>
+          </div>
+          <div className="introItem">
+            <p>
+              photographer<span>@</span>
+            </p>
+            <a
+              href="https://christiandavidphoto.com/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              christian david photo
+            </a>
+          </div>
+        </div>
+
         <p>
-          I'm a programmer interested in iOS development and human-computer interaction. I'm in <a href="https://omscs.gatech.edu/" target="_blank" rel="noreferrer">grad school at Georgia Tech</a> getting a Master's in CS with a concentation in machine learning. I'm obssessed with self-learing and furthering my education.
+          I'm a software engineer with a past in graphic and web design. My
+          focus is on iterative project improvements and excellent UX/UI design.
+          I'm currently teaching myself Swift for iOS development and Golang for
+          server-side. I'm in{" "}
+          <a href="https://omscs.gatech.edu/" target="_blank" rel="noreferrer">
+            grad school at Georgia Tech
+          </a>{" "}
+          getting a Master's of Computer Science with a concentation in
+          computing systems. This blog serves as a record of my projects,
+          accomplishments, and learnings.
         </p>
-        <p>This blog serves as a record of my projects, accomplishments, and learnings.</p>
-        <Link to="/blog/">
-          <Button marginTop="35px">Go to Blog</Button>
+        {/* <p>
+          This blog serves as a record of my projects, accomplishments, and
+          learnings.
+        </p> */}
+        <Link to="/blog/" className="homeCTA">
+          <img
+            style={{ height: 30, paddingRight: 10 }}
+            src="./comp.png"
+            alt="computer"
+          />
+          {"  "}
+          <span>Posts →</span>
+          {/* <Button marginTop="35px">Read →</Button> */}
         </Link>
       </Layout>
     )

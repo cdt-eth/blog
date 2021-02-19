@@ -14,8 +14,9 @@ class Layout extends React.Component {
     if (location.pathname === rootPath || location.pathname === blogPath) {
       header = (
         <h1
+          className="siteTitle"
           style={{
-            ...scale(1.5),
+            ...scale(1.0),
             marginBottom: rhythm(1.5),
             marginTop: 0,
           }}
@@ -28,7 +29,26 @@ class Layout extends React.Component {
             }}
             to={location.pathname === blogPath ? `/blog/` : `/`}
           >
-            {title}
+            {/* {title} */}
+            <p
+              className="siteTitle"
+              style={{
+                ...scale(1.75),
+                marginBottom: rhythm(1.5),
+                marginTop: 0,
+              }}
+            >
+              <span class="green">C</span>
+              <span class="orange">h</span>
+              <span class="yellow">r</span>
+              <span class="purple">i</span>
+              <span class="pink">s</span>
+              <span class="green">t</span>
+              <span class="orange">i</span>
+              <span class="yellow">a</span>
+              <span class="purple">n</span>
+              <span class="pink">.</span>
+            </p>
           </Link>
         </h1>
       )
@@ -66,9 +86,8 @@ class Layout extends React.Component {
           <header>{header}</header>
           <main>{children}</main>
         </div>
-        <Footer>
-          © {new Date().getFullYear()} | 
-          {` `}
+        <Footer className="footerText">
+          © {new Date().getFullYear()} |{` `}
           <a href="mailto:christianturner@hey.com">christianturner@hey.com</a>
         </Footer>
       </Wrapper>
