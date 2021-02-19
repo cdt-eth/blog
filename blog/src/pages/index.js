@@ -13,7 +13,7 @@ class IndexPage extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
-          title="Home"
+          title="christian"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
         {/* <img

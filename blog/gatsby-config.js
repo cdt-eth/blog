@@ -1,10 +1,10 @@
 module.exports = {
   siteMetadata: {
     // edit below
-    title: `Christian Turner's Dev Blog`,
+    title: `Christian Turner Software Engineer`,
     author: `Christian Turner`,
-    description: `A starter personal blog with styled components, dark mode, and Netlify CMS.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    description: `Christian Turner Software Engineer`,
+    siteUrl: `https://cdt.works`,
     social: {
       twitter: `imcdt`,
     },
@@ -121,7 +121,8 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         // edit below
-        icon: `content/assets/gatsby-icon.png`,
+        // icon: `content/assets/favicon.ico`,
+        icon: `content/assets/comp-fav.png`,
       },
     },
     {

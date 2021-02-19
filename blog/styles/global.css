@@ -1,5 +1,5 @@
 @import url("https://use.typekit.net/uso4pve.css");
-@import url("http://fonts.cdnfonts.com/css/apple-garamond");
+@import url("https://fonts.cdnfonts.com/css/apple-garamond");
 @import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap");
 
@@ -23,8 +23,8 @@ a {
 }
 
 a:hover {
-  box-shadow: 0 1px 0 0 currentColor;
   transition: 0.3s;
+  box-shadow: 0 1px 0 0 currentColor !important;
 }
 
 .siteTitle {
@@ -93,7 +93,9 @@ a:hover {
   float: right;
 }
 
-.homeCTA,
-.introItem a {
+.homeCTA {
   box-shadow: none;
+}
+.introItem a:hover {
+  box-shadow: 0 1px 0 0 currentColor !important;
 }
