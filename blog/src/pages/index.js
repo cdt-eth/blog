@@ -48,11 +48,11 @@ class IndexPage extends React.Component {
               twitter <span>@</span>
             </p>
             <a
-              href="https://twitter.com/imcdt"
+              href="https://twitter.com/cdt_works"
               rel="noreferrer"
               target="_blank"
             >
-              imcdt{" "}
+              cdt_works{" "}
             </a>
           </div>
           <div className="introItem">

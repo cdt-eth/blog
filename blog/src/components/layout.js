@@ -30,7 +30,7 @@ class Layout extends React.Component {
             to={location.pathname === blogPath ? `/blog/` : `/`}
           >
             {/* {title} */}
-            <a
+            <p
               href="/"
               className="siteTitle"
               style={{
@@ -49,7 +49,7 @@ class Layout extends React.Component {
               <span class="yellow">a</span>
               <span class="purple">n</span>
               <span class="pink">.</span>
-            </a>
+            </p>
           </Link>
         </h1>
       )

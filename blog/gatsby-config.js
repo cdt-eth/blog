@@ -6,7 +6,7 @@ module.exports = {
     description: `Christian Turner Software Engineer`,
     siteUrl: `https://cdt.works`,
     social: {
-      twitter: `imcdt`,
+      twitter: `cdt_works`,
     },
   },
   plugins: [
