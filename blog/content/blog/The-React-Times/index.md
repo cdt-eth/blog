@@ -13,7 +13,7 @@ description: Read stories from the New York Times using Top Stories Technology A
 
 ##### Check out the [GitHub repo](https://github.com/christiandavidturner/The-React-Times) here
 
-### To run the frontend (it's a basic create-react-app):
+### To run the program:
 
 1. `gh repo clone christiandavidturner/The-React-Times`
 2. `cd The-React-Times/frontend/`
@@ -29,10 +29,10 @@ description: Read stories from the New York Times using Top Stories Technology A
 - CSS Grid
 - Animated SVG wave element
 - GIF logo
-- setTimeout() added to showcase loading animation
+- Add setTimeout() to showcase loading animation
 - Navigation that fetches new data based on section
 - Deployed on Netlify
-- custom domain
+- Custom domain + configuration
 - Desktop only: button micro-interaction on-hover
 
 ### Components:
@@ -41,7 +41,7 @@ description: Read stories from the New York Times using Top Stories Technology A
   └─ **Masthead** - List of sections<br/>
   └─ **SVG** - Animated SVG wave<br/>
 - **News** - Fetch data from New York Times API and return `Stories` <br/>
-  └─ **Story** - Child component of `News` for individual story component<br/>
+  └─ **Story** - Single story component<br/>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ **Button** - Composable button
 - **LoadingBar** - Loading animation taken from [react-loading](https://www.npmjs.com/package/react-loading)
 - **Spacer** - Flexible spacer by height
@@ -59,6 +59,8 @@ description: Read stories from the New York Times using Top Stories Technology A
 
 - Add Typescript
 - Add Tailwind CSS
+- Unit Testing with Jest
+- End-to-end testing with Cypress
+- clean up CSS file
 - Refactor `Masthead` component to use React Router
   - eliminate page reload when clicking new section (on-fetching new data)
-- clean up CSS file
