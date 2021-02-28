@@ -12,9 +12,9 @@ class NotFoundPage extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="404: Not Found" />
-        <h1>🚨 404: Not Found 🚨</h1>
+        <h2>🚨 404: Not Found 🚨</h2>
         <h3>
-          It's not you it's, well maybe it <em>was</em> you...
+          It's not you it's- well, maybe it <em>was</em> you...
         </h3>
         <img
           src="https://media.wired.com/photos/595496e1267cf6013d251dde/master/pass/ezgif.com-optimize-1.gif"

@@ -123,3 +123,6 @@ h5,
 h6 {
   font-family: "Noto Sans JP" !important;
 }
+h4 {
+  letter-spacing: normal !important;
+}

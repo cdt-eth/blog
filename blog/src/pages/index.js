@@ -88,7 +88,8 @@ class IndexPage extends React.Component {
         <Link to="/blog/" className="homeCTA">
           <img
             style={{ height: 30, paddingRight: 10 }}
-            src="./comp.png"
+            // src="./comp.png"
+            src="https://ceias.nau.edu/capstone/projects/EE/2020/FF1RR-S20/images/computer_b.png"
             alt="computer"
           />
           {"  "}
