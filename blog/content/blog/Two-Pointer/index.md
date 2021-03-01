@@ -40,6 +40,25 @@ def maxArea(self, height: List[int]) -> int:
     return mx
 ```
 
+#### 27. Remove Element
+
+`I = "[3,2,2,3], val = 3"`<br/>
+`O = 2, i.e. nums = [2,2]`<br/>
+
+- explanation from Leetcode: <em>"We decrement end each time as we know that the final item is the target value and only increment start once we know the value is ok. Once start reaches end we know all items after that point are the target value so we can stop there."</em>
+
+```python
+def removeElement(self, nums: List[int], val: int) -> int:
+    l, r = 0, len(nums) - 1
+    while l <= r:
+        if nums[l] == val:
+            nums[l], nums[r] = nums[r], nums[l]
+            r -= 1
+        else:
+            l += 1
+    return l
+```
+
 #### 125. Valid Palindrome
 
 `I = "A man, a plan, a canal: Panama"`<br/>
