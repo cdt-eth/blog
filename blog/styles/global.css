@@ -126,3 +126,7 @@ h6 {
 h4 {
   letter-spacing: normal !important;
 }
+
+ul {
+  margin-left: 20px;
+}
