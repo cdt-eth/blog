@@ -15,6 +15,85 @@ Prep.
 
 ## Hash Tables
 
+#### 136. Single Number
+
+`I = [4,1,2,1,2]`<br/>
+`O = 4`<br/>
+
+- create dictionary
+- loop through list and add frequency count for items in list
+- we check `key:value` pairs
+  - if a `value` is equal to 1
+  - return that value's `key`
+
+```python
+def singleNumber(self, nums: List[int]) -> int:
+    d = {}
+
+    for i in nums:
+        if i in d:
+            d[i] += 1
+        else:
+            d[i] = 1
+
+    for k, v in d.items():
+        if v == 1:
+            return k
+```
+
+#### 137. Single Number II
+
+`I = [2,2,3,2]`<br/>
+`O = 3`<br/>
+
+- create dictionary
+- loop through list and add frequency count for items in list
+- we check `key:value` pairs
+  - if a `value` is not equal to 3
+  - return that value's `key`
+
+```python
+def singleNumber(self, nums: List[int]) -> int:
+    d={}
+
+    for i in nums:
+        if i in d:
+            d[i] += 1
+        else:
+            d[i] = 1
+
+    for k, v in d.items():
+        if v != 3:
+            return k
+```
+
+#### 217. Contains Duplicate
+
+`I = [1,2,3,1]`<br/>
+`O = True`<br/>
+
+- create dictionary
+- loop through list and add frequency count for items in list
+- we check `key:value` pairs
+  - if any `value` is greater than 1 we know a duplicate exists
+    - return False
+  - else return True
+
+```python
+def containsDuplicate(self, nums: List[int]) -> bool:
+    d = {}
+
+    for i in nums:
+        if i in d:
+            d[i] += 1
+        else:
+            d[i] = 1
+    for k, v in d.items():
+        if v > 1:
+            return True
+    return False
+```
+
 #### 961. N-Repeated Element in Size 2N Array
 
 `I = [5,1,5,2,5,3,5,4]`<br/>
@@ -36,6 +115,31 @@ def repeatedNTimes(self, A: List[int]) -> int:
     for k, v in d.items():
         if v > 1:
             return k
+```
+
+#### 1207. Unique Number of Occurrences
+
+`I = [1,2,2,1,1,3]`<br/>
+`O = True`<br/>
+
+- create dictionary
+- loop through list and add frequency count for items in list
+- we can add the values (frequencies) to a set to get "unqiue" amounts
+- we only want to return True if the number (length) of raw values is equal to the number (length) of the set of values
+  - meaning if there were 2 nums with frequency of 2, only one "2" would get added to the list
+  - so the length of the set version of the nums would be one less
+    - meaning we don't have a unique numbers of occurences
+
+```python
+def uniqueOccurrences(self, arr: List[int]) -> bool:
+    d = {}
+    for i in arr:
+        if i in d:
+            d[i] += 1
+        else:
+            d[i] = 1
+
+    return len(set(d.values())) == len(d.values())
 ```
 
 #### 1365. How Many Numbers Are Smaller Than the Current Number
