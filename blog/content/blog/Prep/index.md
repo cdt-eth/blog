@@ -15,31 +15,6 @@ Prep.
 
 ## Hash Tables
 
-#### 1512. Number of Good Pairs
-
-`I = [1,2,3,1,1,3]`<br/>
-`O = 4`<br/>
-
-- create dictionary and a `counter` to 0
-- loop through list and add frequency count for items in list
-- if a number is seen again we'll increase our `counter` and...
-- ...
-
-```python
-def numIdenticalPairs(self, nums: List[int]) -> int:
-        counter = 0
-        d = {}
-
-        for n in nums:
-            if n in d:
-                counter += d[n]
-                d[n] +=1
-            else:
-                d[n] = 1
-
-        return counter
-```
-
 #### 961. N-Repeated Element in Size 2N Array
 
 `I = [5,1,5,2,5,3,5,4]`<br/>
@@ -92,4 +67,59 @@ def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
         res.append(d[nums[i]])
 
     return res
+```
+
+#### 1512. Number of Good Pairs
+
+`I = [1,2,3,1,1,3]`<br/>
+`O = 4`<br/>
+
+- create dictionary and a `counter` to 0
+- loop through list and add frequency count for items in list
+- we add every unique num to dictionary
+- if a number is seen again we'll increase our `counter`
+- return counter
+
+```python
+def numIdenticalPairs(self, nums: List[int]) -> int:
+        counter = 0
+        d = {}
+
+        for n in nums:
+            if n in d:
+                counter += d[n]
+                d[n] +=1
+            else:
+                d[n] = 1
+
+        return counter
+```
+
+#### 1748. Sum of Unique Elements
+
+`I = [1,2,3,2]`<br/>
+`O = 4`<br/>
+
+- create empty dictionary and initilize count variable to 0
+- iterate over nums and make dictionary count frequencies
+- then iterate again and if the num showed up once (i.e. it's value in key:value was 1)
+- add that number to our `count`
+- return count
+
+```python
+   def sumOfUnique(self, nums: List[int]) -> int:
+        d = {}
+        count = 0
+
+        for i in nums:
+            if i in d:
+                d[i] += 1
+            else:
+                d[i] = 1
+
+        for j in d:
+            if d[j] == 1:
+                count += j
+        return count
+
 ```
