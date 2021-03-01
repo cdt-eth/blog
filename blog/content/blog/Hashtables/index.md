@@ -1,19 +1,11 @@
 ---
-path: Prep
+path: HashTables
 date: "2021-02-28T23:46:37.121Z"
-title: Prep
-description: Prep
+title: Hash Tables & Dictionaries
+description: Leetcode problems using hash tables & dictionaries.
 ---
 
-### Overview
-
-Prep.
-
-## Two Pointer
-
-<!-- I solved [`Invert Binary Tree`](https://leetcode.com/problems/invert-binary-tree/). -->
-
-## Hash Tables
+Leetcode problems using hash tables & dictionaries.
 
 #### 136. Single Number
 
