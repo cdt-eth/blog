@@ -67,6 +67,53 @@ def singleNumber(self, nums: List[int]) -> int:
             return k
 ```
 
+#### 202. Happy Number
+
+`I = 19`<br/>
+`O = True`<br/>
+
+- create set
+- while loop over number
+- if we haven't seen this number before we add it
+  - if we see it again, we're in a cycle, Happy Number fails
+- while loop _while_ `n` _not_ in `seen` set
+  - said another way, while we're processing a **_new_** number
+  - that number equals the sum of the it's individual squared numbers
+- return True if we loop back to the number 1
+
+```python
+def isHappy(self, n: int) -> bool:
+    seen = set()
+    while n not in seen:
+        seen.add(n)
+        n = sum([int(x) **2 for x in str(n)])
+    return n == 1
+```
+
+#### 204. Count Primes
+
+`I = 10`<br/>
+`O = 4`<br/>
+
+- create dictionary
+- loop through list and add frequency count for items in list
+- we check `key:value` pairs
+  - if any `value`
+
+```python
+ def countPrimes(self, n: int) -> int:
+    if n == 0 or n==1: return 0
+    d = {}
+
+    for i in nums:
+        if i in d:
+            d[i] += 1
+        else:
+            d[i] = 1
+    for k, v in d.items():
+
+```
+
 #### 217. Contains Duplicate
 
 `I = [1,2,3,1]`<br/>
