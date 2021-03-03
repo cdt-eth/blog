@@ -138,3 +138,10 @@ ul li code {
   background-color: #e3e6e8 !important;
   border-radius: 3px !important;
 }
+
+table code {
+  padding: 4px !important;
+  color: var(--black-800) !important;
+  background-color: #e3e6e8 !important;
+  border-radius: 3px !important;
+}
