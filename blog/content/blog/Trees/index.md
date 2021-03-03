@@ -72,6 +72,50 @@ def isSymmetric(self, root: TreeNode) -> bool:
 | Time  | O(<em>n</em>) | we traverse the tree only once          |
 | Space | O(<em>n</em>) | recursive method bound by tree's height |
 
+#### 102. Binary Tree Level Order Traversal - (Breadth First Search)
+
+`I: root = [3,9,20,null,null,15,7]`<br/>
+`O: [[3],[9,20],[15,7]]`<br/>
+
+- Initialize an empty `result` array for the final result
+- Create a queue from Python's `Colletions` data structure containter
+- Initialize the queue by addding the root
+- Being the while loop, so while the queue is _not_ empty we:
+  - Create a `qLen` variable equal to `len(q)` to ensure we iterate 1 level at a time
+  - Create an empty `level` array for the current-level node we'll add to it
+  - Next we'll iterate over the range of nodes on each level, popping the left once first
+  - If there's a node (i.e. not null) we:
+    - append that node's value to our `level` array
+    - add our left child node and right child node to our queue
+  - Then, we check if a `level` even exists in our tree (this accounts for null nodes) before finally appending it to our final `result` array
+- Finally, we return our final `result` arry
+
+```python
+def levelOrder(self, root: TreeNode) -> List[List[int]]:
+  res = [] # array for result
+
+  q = collections.deque() # import queue (double-ended queue)
+  q.append(root) # add root to queue
+
+  while q: # while queue is non-empty
+      qLen = len(q) # ensures we iterate 1 level at a time
+      level = [] # with nodes from that level, we add to their own list
+      for i in range(qLen): # we add the items from all our lists to the result list for totla
+          node = q.popleft() # First In First Out
+          if node: # check that its not null
+              level.append(node.val) # add node to our curr-level array
+              q.append(node.left) # add its children to be added next
+              q.append(node.right) # add its children to be added next
+      if level: # accounts for null nodes
+          res.append(level) # after we've processed all nodes on level, add our level results to our result array
+  return res
+```
+
+|       | Big O         | Why                                                                                  |
+| ----- | ------------- | ------------------------------------------------------------------------------------ |
+| Time  | O(<em>n</em>) | we visit every node once                                                             |
+| Space | O(<em>n</em>) | queue at any given time could have up to n/2 elements, which rounds to O(<em>n</em>) |
+
 #### 226. Invert Binary Tree
 
 `I = [4,2,7,1,3,6,9]`<br/>
@@ -97,3 +141,29 @@ def invertTree(self, root: TreeNode) -> TreeNode:
 | ----- | ------------- | --------------------------------------- |
 | Time  | O(<em>n</em>) | we traverse each node only once         |
 | Space | O(<em>h</em>) | recursive call stack for height of tree |
+
+<!-- #### 572. Subtree of Another Tree
+
+`I = [3,4,5,1,2]`<br/>
+`O = True`<br/>
+
+- We're told the trees are non-empty so we don't need to check if there's a root
+- Next we swap the left node with the right node
+- Then we recursively call the function with each consecutive left & right node
+  - invertTree(root.left)
+  - invertTree(root.right)
+- return the root
+
+```python
+def invertTree(self, root: TreeNode) -> TreeNode:
+  if root:
+      root.left,root.right = root.right, root.left
+      invertTree(root.left)
+      invertTree(root.right)
+  return root
+```
+
+|       | Big O         | Why                                     |
+| ----- | ------------- | --------------------------------------- |
+| Time  | O(<em>n</em>) | we traverse each node only once         |
+| Space | O(<em>h</em>) | recursive call stack for height of tree | -->
