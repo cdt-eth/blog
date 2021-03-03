@@ -123,10 +123,18 @@ h5,
 h6 {
   font-family: "Noto Sans JP" !important;
 }
+
 h4 {
   letter-spacing: normal !important;
 }
 
 ul {
   margin-left: 20px;
+}
+
+ul li code {
+  padding: 4px !important;
+  color: var(--black-800) !important;
+  background-color: #e3e6e8 !important;
+  border-radius: 3px !important;
 }
