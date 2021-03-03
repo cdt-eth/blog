@@ -68,7 +68,7 @@ def missingNumber(self, nums: List[int]) -> int:
 
 |       | Big O         | Why                                                                          |
 | ----- | ------------- | ---------------------------------------------------------------------------- |
-| Time  | O(<em>n</em>) | We make one pass over the range (`n`) of our array                           |
+| Time  | O(<em>n</em>) | We make one pass over the range <em>n</em> of our array                      |
 | Space | O(<em>n</em>) | We create a new dictionary for it's legnth and iterate over our entire array |
 
 #### Version 2 - Gauss's Sum (constant space)
