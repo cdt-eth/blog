@@ -36,10 +36,10 @@ def maxSubArray(self, nums: List[int]) -> int:
     return best
 ```
 
-|       | Big O         | Why                                                                    |
-| ----- | ------------- | ---------------------------------------------------------------------- |
-| Time  | O(<em>n</em>) | we visit every number once, will grow as <em>n</em> grows              |
-| Space | O(<em>1</em>) | space is independent of <em>n</em>, doesn't scale at bigger <em>n</em> |
+|           | Big O         | Why                                                                    |
+| --------- | ------------- | ---------------------------------------------------------------------- |
+| **Time**  | O(<em>n</em>) | we visit every number once, will grow as <em>n</em> grows              |
+| **Space** | O(<em>1</em>) | space is independent of <em>n</em>, doesn't scale at bigger <em>n</em> |
 
 #### 268. Missing Number
 
@@ -66,10 +66,10 @@ def missingNumber(self, nums: List[int]) -> int:
           return i
 ```
 
-|       | Big O         | Why                                                                          |
-| ----- | ------------- | ---------------------------------------------------------------------------- |
-| Time  | O(<em>n</em>) | We make one pass over the range <em>n</em> of our array                      |
-| Space | O(<em>n</em>) | We create a new dictionary for it's legnth and iterate over our entire array |
+|           | Big O         | Why                                                                          |
+| --------- | ------------- | ---------------------------------------------------------------------------- |
+| **Time**  | O(<em>n</em>) | We make one pass over the range <em>n</em> of our array                      |
+| **Space** | O(<em>n</em>) | We create a new dictionary for it's legnth and iterate over our entire array |
 
 #### Version 2 - Gauss's Sum (constant space)
 
@@ -92,7 +92,7 @@ def missingNumber(self, nums: List[int]) -> int:
   return (exp-act)
 ```
 
-|       | Big O         | Why                                                              |
-| ----- | ------------- | ---------------------------------------------------------------- |
-| Time  | O(<em>n</em>) | we have to compute ever `n` items, will grow as `n` grows        |
-| Space | O(<em>1</em>) | we're only performing computations, not iterating over `n` items |
+|           | Big O         | Why                                                              |
+| --------- | ------------- | ---------------------------------------------------------------- |
+| **Time**  | O(<em>n</em>) | we have to compute ever `n` items, will grow as `n` grows        |
+| **Space** | O(<em>1</em>) | we're only performing computations, not iterating over `n` items |
