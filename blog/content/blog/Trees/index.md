@@ -7,10 +7,49 @@ description: Leetcode problems using tree data structures.
 
 Leetcode problems using tree data structures.
 
+#### 94. Binary Tree Inorder Traversal - Left, Node, Right
+
+`I: root = [1,null,2,3]`<br/>
+`O: [1,3,2]`<br/>
+
+- We create an empty results array (`arr`)
+- We create a stack an append the `root`
+- While our stack exists we take `root` and assign it to our `node` variable for assessing
+- Check if node exists
+- Check is it's an instance of our TreeNode sub-class
+- Then we append our `node`'s right child, the current `node`'s value, and then the `node`'s left child
+  - we add to the stack in the opposite way that the traversal method is assessed
+  - when we pop the nodes off the stack they'll then be in order, so must be added in reversed
+  - LIFO = Last In, First Out
+- Else case once we reach a null left
+  - we will add the node, previously added to our stack, and then append to our output array (`res`)
+- Return our `res` array
+
+```python
+def inorderTraversal(self, root: TreeNode) -> List[int]:
+  res = []
+  stack = [root]
+  while stack:
+    node = stack.pop()
+    if node:
+      if isinstance(node, TreeNode):
+        stack.append(node.right)
+        stack.append(node.val)
+        stack.append(node.left)
+      else:
+        res.append(node)
+  return res
+```
+
+|           | Big O         | Why                     |
+| --------- | ------------- | ----------------------- |
+| **Time**  | O(<em>n</em>) | we visit each node once |
+| **Space** | O(<em>h</em>) | bound to height of tree |
+
 #### 100. Same Tree
 
-`I = p = [1,2,3], q = [1,2,3]`<br/>
-`O = True`<br/>
+`I: p = [1,2,3], q = [1,2,3]`<br/>
+`O: True`<br/>
 
 - We check our base cases:
   - if there's no `p` node _*and*_ there's not `q` node it's `True`
@@ -40,8 +79,8 @@ def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
 
 #### 101. Symmetric Tree
 
-`I = [1,2,2,3,4,4,3]`<br/>
-`O = True`<br/>
+`I: [1,2,2,3,4,4,3]`<br/>
+`O: True`<br/>
 
 - We use a helper function and pass the first left & right node to it to check our base cases:
   - if there's no `leftNode` node _*and*_ there's not `rightNode` node it's `True`
@@ -116,6 +155,35 @@ def levelOrder(self, root: TreeNode) -> List[List[int]]:
 | **Time**  | O(<em>n</em>) | we visit every node once                                                             |
 | **Space** | O(<em>n</em>) | queue at any given time could have up to n/2 elements, which rounds to O(<em>n</em>) |
 
+#### 108. Convert Sorted Array to Binary Search Tree
+
+`I: nums = [-10,-3,0,5,9]`<br/>
+`O: [0,-3,9,-10,null,5]`<br/>
+
+- We check if the array `nums` exists
+- Then we set a midpoint by diving the length of our array and diving it by 2
+  - we use `//` in Python because we want an integer (no decimal points)
+- Now our `node` is set to this `mid` tree node
+- We recursively call our function with the left child being everything to the left of the `mid` node
+  - and the right being everything to the right of the `mid`, starting at 1 node after `mid`, to not include it
+- Return `node`
+
+```python
+def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+    if not nums:
+        return None
+    mid = len(nums)//2
+    node = TreeNode(nums[mid])
+    node.left = self.sortedArrayToBST(nums[:mid])
+    node.right = self.sortedArrayToBST(nums[mid+1:])
+    return node
+```
+
+|           | Big O                        | Why                                                                                                                             |
+| --------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Time**  | O(<em>n</em>)                | we visit each node once                                                                                                         |
+| **Space** | O(<em>n</em>log(<em>n</em>)) | recursion is O(<em>n</em>) but array-splitting is O(log(<em>n</em>)) so total _recursion tree_ is <em>n</em> \* log(<em>n</em>) |
+
 #### 111. Minimum Depth of Binary Tree
 
 `I: root = [3,9,20,null,null,15,7]`<br/>
@@ -142,10 +210,88 @@ def minDepth(self, root: TreeNode) -> int:
 | **Time**  | O(<em>n</em>) | we traverse each node only once         |
 | **Space** | O(<em>h</em>) | recursive call stack for height of tree |
 
+#### 144. Binary Tree Preorder Traversal - Node, Left, Right
+
+`I: rroot = [1,null,2,3]`<br/>
+`O: [1,2,3]`<br/>
+
+- We create an empty results array (`arr`)
+- We create a stack an append the `root`
+- While our stack exists we take `root` and assign it to our `node` variable for assessing
+- Check if node exists
+- Check is it's an instance of our TreeNode sub-class
+- Then we append our `node`'s right child, the `node`'s left child, and then the current `node`'s value
+  - we add to the stack in the opposite way that the traversal method is assessed
+  - when we pop the nodes off the stack they'll then be in order, so must be added in reversed
+  - LIFO = Last In, First Out
+- Else case once we reach a null left
+  - we will add the node, previously added to our stack, and then append to our output array (`res`)
+- Return our `res` array
+
+```python
+def preorderTraversal(self, root: TreeNode) -> List[int]:
+  res = []
+  stack = [root]
+  while stack:
+    temp = stack.pop()
+    if temp:
+      if isinstance(temp, TreeNode):
+        stack.append(temp.right)
+        stack.append(temp.left)
+        stack.append(temp.val)
+      else:
+        res.append(temp)
+  return res
+```
+
+|           | Big O         | Why                     |
+| --------- | ------------- | ----------------------- |
+| **Time**  | O(<em>n</em>) | we visit each node once |
+| **Space** | O(<em>h</em>) | bound to height of tree |
+
+#### 145. Binary Tree Postorder Traversal - Left, Right, Node
+
+`I: rroot = [1,null,2,3]`<br/>
+`O: [1,2,3]`<br/>
+
+- We create an empty results array (`arr`)
+- We create a stack an append the `root`
+- While our stack exists we take `root` and assign it to our `node` variable for assessing
+- Check if node exists
+- Check is it's an instance of our TreeNode sub-class
+- Then we append our `node`'s right child, the `node`'s left child, and then the current `node`'s value
+  - we add to the stack in the opposite way that the traversal method is assessed
+  - when we pop the nodes off the stack they'll then be in order, so must be added in reversed
+  - LIFO = Last In, First Out
+- Else case once we reach a null left
+  - we will add the node, previously added to our stack, and then append to our output array (`res`)
+- Return our `res` array
+
+```python
+def postorderTraversal(self, root: TreeNode) -> List[int]:
+  res = []
+  stack = [root]
+  while stack:
+    temp = stack.pop()
+    if temp:
+      if isinstance(temp, TreeNode):
+        stack.append(temp.val)
+        stack.append(temp.right)
+        stack.append(temp.left)
+      else:
+        res.append(temp)
+  return res
+```
+
+|           | Big O         | Why                     |
+| --------- | ------------- | ----------------------- |
+| **Time**  | O(<em>n</em>) | we visit each node once |
+| **Space** | O(<em>h</em>) | bound to height of tree |
+
 #### 226. Invert Binary Tree
 
-`I = [4,2,7,1,3,6,9]`<br/>
-`O = [4,7,2,9,6,3,1]`<br/>
+`I: [4,2,7,1,3,6,9]`<br/>
+`O: [4,7,2,9,6,3,1]`<br/>
 
 - We check if there's a root to begin with
 - Next we swap the left node with the right node
@@ -170,8 +316,8 @@ def invertTree(self, root: TreeNode) -> TreeNode:
 
 <!-- #### 572. Subtree of Another Tree
 
-`I = [3,4,5,1,2]`<br/>
-`O = True`<br/>
+`I: [3,4,5,1,2]`<br/>
+`O: True`<br/>
 
 - We're told the trees are non-empty so we don't need to check if there's a root
 - Next we swap the left node with the right node
@@ -196,8 +342,8 @@ def invertTree(self, root: TreeNode) -> TreeNode:
 
 #### 637. Average Levels of Binary Tree
 
-`I = [4,2,7,1,3,6,9]`<br/>
-`O = [4,7,2,9,6,3,1]`<br/>
+`I: [4,2,7,1,3,6,9]`<br/>
+`O: [4,7,2,9,6,3,1]`<br/>
 
 - Initialize an empty `result` array for the final result
 - Create a queue from Python's `Colletions` data structure containter
