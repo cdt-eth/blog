@@ -7,10 +7,10 @@ description: Leetcode problems using hash tables & dictionaries.
 
 Leetcode problems using hash tables & dictionaries.
 
-#### 136. Single Number
+#### [136. Single Number](https://leetcode.com/problems/single-number/)
 
-`I = [4,1,2,1,2]`<br/>
-`O = 4`<br/>
+`I: nums = [4,1,2,1,2]`<br/>
+`O: 4`<br/>
 
 - create dictionary
 - loop through list and add frequency count for items in list
@@ -33,10 +33,15 @@ def singleNumber(self, nums: List[int]) -> int:
             return k
 ```
 
-#### 137. Single Number II
+|           | Big O         | Why                                       |
+| --------- | ------------- | ----------------------------------------- |
+| **Time**  | O(<em>n</em>) | for loop over <em>n</em> numbers          |
+| **Space** | O(<em>n</em>) | create a dictionary up to <em>n</em> size |
 
-`I = [2,2,3,2]`<br/>
-`O = 3`<br/>
+#### [137. Single Number II](https://leetcode.com/problems/single-number-ii/)
+
+`I: nums = [2,2,3,2]`<br/>
+`O: 3`<br/>
 
 - create dictionary
 - loop through list and add frequency count for items in list
@@ -59,10 +64,15 @@ def singleNumber(self, nums: List[int]) -> int:
             return k
 ```
 
-#### 202. Happy Number
+|           | Big O         | Why                                       |
+| --------- | ------------- | ----------------------------------------- |
+| **Time**  | O(<em>n</em>) | for loop over <em>n</em> numbers          |
+| **Space** | O(<em>n</em>) | create a dictionary up to <em>n</em> size |
 
-`I = 19`<br/>
-`O = True`<br/>
+#### [202. Happy Number](https://leetcode.com/problems/happy-number/)
+
+`I: n = 19`<br/>
+`O: True`<br/>
 
 - create set
 - while loop over number
@@ -82,34 +92,15 @@ def isHappy(self, n: int) -> bool:
     return n == 1
 ```
 
-#### 204. Count Primes
+|           | Big O         | Why                                |
+| --------- | ------------- | ---------------------------------- |
+| **Time**  | O(<em>n</em>) | while loop over <em>n</em> numbers |
+| **Space** | O(<em>n</em>) | create a set up to <em>n</em> size |
 
-`I = 10`<br/>
-`O = 4`<br/>
+#### [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)
 
-- create dictionary
-- loop through list and add frequency count for items in list
-- we check `key:value` pairs
-  - if any `value`
-
-```python
- def countPrimes(self, n: int) -> int:
-    if n == 0 or n==1: return 0
-    d = {}
-
-    for i in nums:
-        if i in d:
-            d[i] += 1
-        else:
-            d[i] = 1
-    for k, v in d.items():
-
-```
-
-#### 217. Contains Duplicate
-
-`I = [1,2,3,1]`<br/>
-`O = True`<br/>
+`I: nums = [1,2,3,1]`<br/>
+`O: True`<br/>
 
 - create dictionary
 - loop through list and add frequency count for items in list
@@ -133,10 +124,15 @@ def containsDuplicate(self, nums: List[int]) -> bool:
     return False
 ```
 
-#### 961. N-Repeated Element in Size 2N Array
+|           | Big O         | Why                                       |
+| --------- | ------------- | ----------------------------------------- |
+| **Time**  | O(<em>n</em>) | for loop over <em>n</em> numbers          |
+| **Space** | O(<em>n</em>) | create a dictionary up to <em>n</em> size |
 
-`I = [5,1,5,2,5,3,5,4]`<br/>
-`O = 5`<br/>
+#### [961. N-Repeated Element in Size 2N Array](https://leetcode.com/problems/n-repeated-element-in-size-2n-array/)
+
+`I: A = [5,1,5,2,5,3,5,4]`<br/>
+`O: 5`<br/>
 
 - create dictionary
 - loop through list and add frequency count for items in list
@@ -156,10 +152,15 @@ def repeatedNTimes(self, A: List[int]) -> int:
             return k
 ```
 
-#### 1207. Unique Number of Occurrences
+|           | Big O         | Why                                       |
+| --------- | ------------- | ----------------------------------------- |
+| **Time**  | O(<em>n</em>) | for loop over <em>n</em> numbers          |
+| **Space** | O(<em>n</em>) | create a dictionary up to <em>n</em> size |
 
-`I = [1,2,2,1,1,3]`<br/>
-`O = True`<br/>
+#### [1207. Unique Number of Occurrences](https://leetcode.com/problems/unique-number-of-occurrences/)
+
+`I: arr = [1,2,2,1,1,3]`<br/>
+`O: True`<br/>
 
 - create dictionary
 - loop through list and add frequency count for items in list
@@ -181,10 +182,15 @@ def uniqueOccurrences(self, arr: List[int]) -> bool:
     return len(set(d.values())) == len(d.values())
 ```
 
-#### 1365. How Many Numbers Are Smaller Than the Current Number
+|           | Big O         | Why                                       |
+| --------- | ------------- | ----------------------------------------- |
+| **Time**  | O(<em>n</em>) | for loop over <em>n</em> numbers          |
+| **Space** | O(<em>n</em>) | create a dictionary up to <em>n</em> size |
 
-`I = [8,1,2,2,3]`<br/>
-`O = [4, 0, 1, 1, 3]`<br/>
+#### [1365. How Many Numbers Are Smaller Than the Current Number](https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/)
+
+`I: nums = [8,1,2,2,3]`<br/>
+`O: [4, 0, 1, 1, 3]`<br/>
 
 - create dictionary and empty result array
 - sort nums and iterate over them
@@ -212,10 +218,15 @@ def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
     return res
 ```
 
-#### 1512. Number of Good Pairs
+|           | Big O                        | Why                                                           |
+| --------- | ---------------------------- | ------------------------------------------------------------- |
+| **Time**  | O(<em>n</em>)                | for loop over <em>n</em> numbers & sorting is log(<em>n</em>) |
+| **Space** | O(<em>n</em>log(<em>n</em>)) | create a dictionary up to <em>n</em> size                     |
 
-`I = [1,2,3,1,1,3]`<br/>
-`O = 4`<br/>
+#### [1512. Number of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/)
+
+`I: nums = [1,2,3,1,1,3]`<br/>
+`O: 4`<br/>
 
 - create dictionary and a `counter` to 0
 - loop through list and add frequency count for items in list
@@ -238,10 +249,15 @@ def numIdenticalPairs(self, nums: List[int]) -> int:
         return counter
 ```
 
-#### 1748. Sum of Unique Elements
+|           | Big O         | Why                                       |
+| --------- | ------------- | ----------------------------------------- |
+| **Time**  | O(<em>n</em>) | for loop over <em>n</em> numbers          |
+| **Space** | O(<em>n</em>) | create a dictionary up to <em>n</em> size |
 
-`I = [1,2,3,2]`<br/>
-`O = 4`<br/>
+#### [1748. Sum of Unique Elements](https://leetcode.com/problems/sum-of-unique-elements/)
+
+`I: nums = [1,2,3,2]`<br/>
+`O: 4`<br/>
 
 - create empty dictionary and initilize count variable to 0
 - iterate over nums and make dictionary count frequencies
@@ -266,3 +282,8 @@ def numIdenticalPairs(self, nums: List[int]) -> int:
         return count
 
 ```
+
+|           | Big O         | Why                                       |
+| --------- | ------------- | ----------------------------------------- |
+| **Time**  | O(<em>n</em>) | for loop over <em>n</em> numbers          |
+| **Space** | O(<em>n</em>) | create a dictionary up to <em>n</em> size |
