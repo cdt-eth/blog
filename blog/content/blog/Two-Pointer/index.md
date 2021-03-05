@@ -7,10 +7,10 @@ description: Leetcode problems using the two pointer technique.
 
 Leetcode problems using the two pointer technique.
 
-#### 11. Container With Most Water
+#### [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
 
-`I = [1,8,6,2,5,4,8,3,7]`<br/>
-`O = 49`<br/>
+`I: height = [1,8,6,2,5,4,8,3,7]`<br/>
+`O: 49`<br/>
 
 - create our left pointer and initialize to 0
 - create our right pointer and initialize to the length of our `height` array - 1
@@ -26,43 +26,54 @@ Leetcode problems using the two pointer technique.
 
 ```python
 def maxArea(self, height: List[int]) -> int:
-    l, r = 0, len(height)-1
-    mx = 0
+  l, r = 0, len(height)-1
+  mx = 0
 
-    while l < r:
-        h = min(height[l], height[r])
-        mx = max(mx, h*(r-l))
+  while l < r:
+    h = min(height[l], height[r])
+    mx = max(mx, h*(r-l))
 
-        if height[l] < height[r]:
-            l += 1
-        else:
-            r -= 1
-    return mx
+    if height[l] < height[r]:
+      l += 1
+    else:
+      r -= 1
+  return mx
 ```
 
-#### 27. Remove Element
+|           | Big O         | Why                                                                    |
+| --------- | ------------- | ---------------------------------------------------------------------- |
+| **Time**  | O(<em>n</em>) | we make one pass over array, will grow as <em>n</em> grows             |
+| **Space** | O(<em>1</em>) | space is independent of <em>n</em>, doesn't scale at bigger <em>n</em> |
 
-`I = "[3,2,2,3], val = 3"`<br/>
-`O = 2, i.e. nums = [2,2]`<br/>
+#### [27. Remove Element](https://leetcode.com/problems/remove-element/)
+
+`I: nums=[3,2,2,3], val = 3`<br/>
+`O: 2, i.e. nums = [2,2]`<br/>
 
 - explanation from Leetcode: <em>"We decrement end each time as we know that the final item is the target value and only increment start once we know the value is ok. Once start reaches end we know all items after that point are the target value so we can stop there."</em>
 
 ```python
 def removeElement(self, nums: List[int], val: int) -> int:
-    l, r = 0, len(nums) - 1
-    while l <= r:
-        if nums[l] == val:
-            nums[l], nums[r] = nums[r], nums[l]
-            r -= 1
-        else:
-            l += 1
-    return l
+  count = 0
+  if len(nums) == 0:
+    return 0
+
+  for i in range(len(nums)):
+    if nums[i] != val:
+      nums[count] = nums[i]
+      count += 1
+  return count
 ```
 
-#### 125. Valid Palindrome
+|           | Big O         | Why                                                        |
+| --------- | ------------- | ---------------------------------------------------------- |
+| **Time**  | O(<em>n</em>) | we make one pass over array, will grow as <em>n</em> grows |
+| **Space** | O(<em>1</em>) | we modify in-place, doesn't scale at bigger <em>n</em>     |
 
-`I = "A man, a plan, a canal: Panama"`<br/>
-`O = True`<br/>
+#### [125. Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)
+
+`I: s = "A man, a plan, a canal: Panama"`<br/>
+`O: True`<br/>
 
 - reassign string as said string after each character has been made lowercase and we've removed the non-alphanumeric characters
 - create our left pointer and initialize to 0
@@ -77,21 +88,26 @@ def removeElement(self, nums: List[int], val: int) -> int:
   - they're all mirrored so our string is a palindrome
 
 ```python
-def isPalindrome(s):
-    s = [i.lower() for i in s if i.isalnum()]
-    l, r = 0, len(s)-1
-    while l < r:
-        if s[l] != s[r]:
-            return False
-        l += 1
-        r -= 1
-    return True
+def isPalindrome(self, s: str) -> bool:
+  s = [i.lower() for i in s if i.isalnum()]
+  l, r = 0, len(s)-1
+  while l < r:
+    if s[l] != s[r]:
+      return False
+    l += 1
+    r -= 1
+  return True
 ```
 
-#### 167. Two Sum II - Input array is sorted
+|           | Big O         | Why                                                         |
+| --------- | ------------- | ----------------------------------------------------------- |
+| **Time**  | O(<em>n</em>) | we make one pass over string, will grow as <em>n</em> grows |
+| **Space** | O(<em>1</em>) | we modify in-place, doesn't scale at bigger <em>n</em>      |
 
-`I = [2,7,11,15], target = 9`<br/>
-`O = [1,2]`<br/>
+#### [167. Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+
+`I: numbers = [2,7,11,15], target = 9`<br/>
+`O: [1,2]`<br/>
 
 - create our left pointer and initialize to 0
 - create our right pointer and initialize to the length of our nums array - 1
@@ -107,23 +123,27 @@ def isPalindrome(s):
 
 ```python
 def twoSum(self, numbers: List[int], target: int) -> List[int]:
-    l, r = 0, len(nums)-1
+  l, r = 0, len(nums)-1
 
-    while l < r:
-        curr = nums[l]+nums[r]
-        if curr < target:
-            l += 1
-        elif curr > target:
-            r -= 1
-        else:
-            print([l+1, r+1])
-            return [l+1, r+1]
+  while l < r:
+    curr = nums[l]+nums[r]
+    if curr < target:
+      l += 1
+    elif curr > target:
+      r -= 1
+    else:
+      return [l+1, r+1]
 ```
 
-#### 344. Reverse String
+|           | Big O         | Why                                                         |
+| --------- | ------------- | ----------------------------------------------------------- |
+| **Time**  | O(<em>n</em>) | we make one pass over string, will grow as <em>n</em> grows |
+| **Space** | O(<em>1</em>) | we don't create any extra space, merely return indices      |
 
-`I = ["h","e","l","l","o"]`<br/>
-`O = ["o","l","l","e","h"]`<br/>
+#### [344. Reverse String](https://leetcode.com/problems/reverse-string/)
+
+`I: ["h","e","l","l","o"]`<br/>
+`O: ["o","l","l","e","h"]`<br/>
 
 - create our left pointer and initialize to 0
 - create our right pointer and initialize to the length of our nums array - 1
@@ -137,19 +157,24 @@ def twoSum(self, numbers: List[int], target: int) -> List[int]:
 
 ```python
 def reverseString(self, s: List[str]) -> None:
-    l, r = 0, len(s)-1
+  l, r = 0, len(s)-1
 
-    while l < r:
-        s[l], s[r] = s[r], s[l]
-        l += 1
-        r -= 1
-    return s
+  while l < r:
+    s[l], s[r] = s[r], s[l]
+    l += 1
+    r -= 1
+  return s
 ```
 
-#### 345. Reverse Vowels of a String
+|           | Big O         | Why                                                         |
+| --------- | ------------- | ----------------------------------------------------------- |
+| **Time**  | O(<em>n</em>) | we make one pass over string, will grow as <em>n</em> grows |
+| **Space** | O(<em>1</em>) | we modify in-place, doesn't scale at bigger <em>n</em>      |
 
-`I = "hello"`<br/>
-`O = "holle"`<br/>
+#### [345. Reverse Vowels of a String](https://leetcode.com/problems/reverse-vowels-of-a-string/)
+
+`I: s = "hello"`<br/>
+`O: "holle"`<br/>
 
 - create our left pointer and initialize to 0
 - create our right pointer and initialize to the length of our nums array - 1
@@ -168,27 +193,32 @@ def reverseString(self, s: List[str]) -> None:
 
 ```python
 def reverseVowels(self, s: str) -> str:
-    l, r = 0, len(s)-1
-    s = list(s)
-    v = {"a", "e", "i", "o", "u", "A", "E", "I", "O", "U"}
+  l, r = 0, len(s)-1
+  s = list(s)
+  v = {"a", "e", "i", "o", "u", "A", "E", "I", "O", "U"}
 
-    while l < r:
-        if s[l] not in v:
-            l += 1
-        elif s[r] not in v:
-            r -= 1
-        else:
-            s[l], s[r] = s[r], s[l]
-            l += 1
-            r -= 1
-    return ''.join(s)
+  while l < r:
+    if s[l] not in v:
+      l += 1
+    elif s[r] not in v:
+      r -= 1
+    else:
+      s[l], s[r] = s[r], s[l]
+      l += 1
+      r -= 1
+  return ''.join(s)
 
 ```
 
-#### 977. Squares of a Sorted Array
+|           | Big O         | Why                                                         |
+| --------- | ------------- | ----------------------------------------------------------- |
+| **Time**  | O(<em>n</em>) | we make one pass over string, will grow as <em>n</em> grows |
+| **Space** | O(<em>1</em>) | we modify in-place, doesn't scale at bigger <em>n</em>      |
 
-`I = [-4,-1,0,3,10]`<br/>
-`O = [0,1,9,16,100]`<br/>
+#### [977. Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)
+
+`I: nums = [-4,-1,0,3,10]`<br/>
+`O: [0,1,9,16,100]`<br/>
 
 - create our left pointer and initialize to 0
 - create our right pointer and initialize to the length of our nums array - 1
@@ -208,15 +238,20 @@ def reverseVowels(self, s: str) -> str:
 
 ```python
 def sortedSquares(self, nums: List[int]) -> List[int]:
-    l, r = 0, len(nums)-1
-    arr = [None for i in enumerate(nums)]
+  l, r = 0, len(nums)-1
+  arr = [None for i in enumerate(nums)]
 
-    for i in range(len(nums)-1, -1, -1):
-        if abs(nums[l]) > abs(nums[r]):
-            arr[i] = nums[l] ** 2
-            l += 1
-        else:
-            arr[i] = nums[r] ** 2
-            r -= 1
-    return arr
+  for i in range(len(nums)-1, -1, -1):
+    if abs(nums[l]) > abs(nums[r]):
+      arr[i] = nums[l] ** 2
+      l += 1
+    else:
+      arr[i] = nums[r] ** 2
+      r -= 1
+  return arr
 ```
+
+|           | Big O         | Why                                                         |
+| --------- | ------------- | ----------------------------------------------------------- |
+| **Time**  | O(<em>n</em>) | we make one pass over string, will grow as <em>n</em> grows |
+| **Space** | O(<em>n</em>) | we create an <em>n</em>-sized auxilliary placeholder array  |
