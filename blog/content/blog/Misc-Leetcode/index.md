@@ -7,10 +7,10 @@ description: Leetcode problems using non-tradtional algorithms.
 
 Leetcode problems using non-tradtional algorithms.
 
-#### 53. Maximum Subarray (Kadane's Algorithm)
+#### [53. Maximum Subarray (Kadane's Algorithm)](https://leetcode.com/problems/maximum-subarray/)
 
-`I = [-2,1,-3,4,-1,2,1,-5,4]`<br/>
-`O = 6`<br/>
+`I: nums = [-2,1,-3,4,-1,2,1,-5,4]`<br/>
+`O: 6`<br/>
 
 - We initialize a `best` and a `curr` variable
   - `best` tracks our max subarray sum (the goal)
@@ -26,14 +26,13 @@ Leetcode problems using non-tradtional algorithms.
 
 ```python
 def maxSubArray(self, nums: List[int]) -> int:
+  best = float('-inf')
+  curr = 0
 
-    best = float('-inf')
-    curr = 0
-
-    for n in nums:
-        curr = max(n,curr+n)
-        best = max(best,curr)
-    return best
+  for n in nums:
+    curr = max(n,curr+n)
+    best = max(best,curr)
+  return best
 ```
 
 |           | Big O         | Why                                                                    |
@@ -41,10 +40,10 @@ def maxSubArray(self, nums: List[int]) -> int:
 | **Time**  | O(<em>n</em>) | we visit every number once, will grow as <em>n</em> grows              |
 | **Space** | O(<em>1</em>) | space is independent of <em>n</em>, doesn't scale at bigger <em>n</em> |
 
-#### 268. Missing Number
+#### [268. Missing Number](https://leetcode.com/problems/missing-number/)
 
-`I = [3,0,1]`<br/>
-`O = 2`<br/>
+`I: nums = [3,0,1]`<br/>
+`O: 2`<br/>
 
 - Create a dictionary to store every item in our given `nums` array
   - we'll set the `key`/`value` pairs to the same passed number
@@ -60,10 +59,10 @@ def missingNumber(self, nums: List[int]) -> int:
   d = {i:i for i in nums}
 
   for i in range(len(nums)+1):
-      if i in d:
-          continue
-      else:
-          return i
+    if i in d:
+      continue
+    else:
+      return i
 ```
 
 |           | Big O         | Why                                                                          |
@@ -73,8 +72,8 @@ def missingNumber(self, nums: List[int]) -> int:
 
 #### Version 2 - Gauss's Sum (constant space)
 
-`I = [3,0,1]`<br/>
-`O = 2`<br/>
+`I: nums = [3,0,1]`<br/>
+`O: 2`<br/>
 
 - We will assess two variables:
   - `exp`: is our _expected_ sum of all the numbers in that range, we'll use the [Gauss's Sum](https://math.stackexchange.com/questions/1917510/gauss-formula-to-add-number-of-sequence-for-arbitrary-range)
