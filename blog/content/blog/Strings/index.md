@@ -25,22 +25,22 @@ Leetcode problems about Strings.
 
 ```python
 def isValid(self, s: str) -> bool:
-    stack = []
-    open = list("([{")
-    for p in s:
-        if p in open:
-            stack.append(p)
-        elif len(stack) <= 0:
-            return False
-        elif p == ")" and stack.pop() != "(":
-            return False
-        elif p == "]" and stack.pop() != "[":
-            return False
-        elif p == "}" and stack.pop() != "{":
-            return False
-    if len(stack) == 0:
-        return True
-    return False
+  stack = []
+  open = list("([{")
+  for p in s:
+    if p in open:
+      stack.append(p)
+    elif len(stack) <= 0:
+      return False
+    elif p == ")" and stack.pop() != "(":
+      return False
+    elif p == "]" and stack.pop() != "[":
+      return False
+    elif p == "}" and stack.pop() != "{":
+      return False
+  if len(stack) == 0:
+      return True
+  return False
 ```
 
 |           | Big O                       | Why                                                                                                                                        |
@@ -67,14 +67,14 @@ def isValid(self, s: str) -> bool:
 
 ```python
 def isPalindrome(s):
-    s = [i.lower() for i in s if i.isalnum()]
-    l, r = 0, len(s)-1
-    while l < r:
-        if s[l] != s[r]:
-            return False
-        l += 1
-        r -= 1
-    return True
+  s = [i.lower() for i in s if i.isalnum()]
+  l, r = 0, len(s)-1
+  while l < r:
+    if s[l] != s[r]:
+      return False
+    l += 1
+    r -= 1
+  return True
 ```
 
 |           | Big O         | Why                                                                  |
@@ -94,10 +94,64 @@ def isPalindrome(s):
 
 ```python
 def reverseWords(self, s: str) -> str:
-    return " ".join(reversed(s.split()))
+  return " ".join(reversed(s.split()))
 ```
 
 |           | Big O         | Why                                                                         |
 | --------- | ------------- | --------------------------------------------------------------------------- |
 | **Time**  | O(<em>n</em>) | string manipulation time based on number of <em>n</em> characters in string |
 | **Space** | O(<em>n</em>) | creates a list and `.join` brings the string back together                  |
+
+#### 1221. Split a String in Balanced Strings
+
+`I : s = "RLRRLLRLRL"`<br/>
+`O: 4`<br/>
+
+- We create an empty `balance` and `count` variable, initialized to 0
+- Iterate over every character in our string and when:
+  - we see an `L` we increment our `balance` by 1
+  - we see an `R` we decrement our `balance` by 1
+- Then make a check to see if our `balance` is 0
+  - it'll only be 0 when an equal (balanced) amount of `L`s & `R`s have been seen
+- If that balance is 0 on a pass we'll increment the `counter` by 1
+- Lastly, we return the count on "zero balances" we saw (i.e. how many balanced substrings we have)
+
+```python
+def balancedStringSplit(self, s: str) -> int:
+  balance = 0
+  count = 0
+  for i in s:
+    if i == "L":
+      balance += 1
+    else:
+      balance -= 1
+    if balance == 0:
+      count += 1
+  return count
+```
+
+|           | Big O         | Why                                                             |
+| --------- | ------------- | --------------------------------------------------------------- |
+| **Time**  | O(<em>n</em>) | we make one pass over <em>n</em> number of characters in string |
+| **Space** | O(<em>1</em>) | no extra space created                                          |
+
+#### 1662. Check If Two String Arrays are Equivalent
+
+`I : word1 = ["ab", "c"], word2 = ["a", "bc"]`<br/>
+`O: True`<br/>
+
+- We join every substring into one string
+- Then return true if they're equal
+
+```python
+def arrayStringsAreEqual(self, word1: List[str], word2: List[str]) -> bool:
+  w1 = "".join(word1)
+  w2 = "".join(word2)
+
+  return w1 == w2
+```
+
+|           | Big O                    | Why                                                                                         |
+| --------- | ------------------------ | ------------------------------------------------------------------------------------------- |
+| **Time**  | O(<em>n</em>+<em>m</em>) | we make one pass over both <em>n</em> & <em>m</em> number of characters in string           |
+| **Space** | O(<em>n</em>+<em>m</em>) | creates a list and `.join` brings the string back together for both <em>n</em> & <em>m</em> |
