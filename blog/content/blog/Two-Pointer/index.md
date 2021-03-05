@@ -207,7 +207,6 @@ def reverseVowels(self, s: str) -> str:
       l += 1
       r -= 1
   return ''.join(s)
-
 ```
 
 |           | Big O         | Why                                                         |
