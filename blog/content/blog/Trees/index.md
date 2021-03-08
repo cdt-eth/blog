@@ -30,14 +30,14 @@ def inorderTraversal(self, root: TreeNode) -> List[int]:
   res = []
   stack = [root]
   while stack:
-    node = stack.pop()
-    if node:
-      if isinstance(node, TreeNode):
-        stack.append(node.right)
-        stack.append(node.val)
-        stack.append(node.left)
-      else:
-        res.append(node)
+  node = stack.pop()
+  if node:
+    if isinstance(node, TreeNode):
+      stack.append(node.right)
+      stack.append(node.val)
+      stack.append(node.left)
+    else:
+      res.append(node)
   return res
 ```
 
@@ -46,14 +46,14 @@ def inorderTraversal(self, root: TreeNode) -> List[int]:
 | **Time**  | O(<em>n</em>) | we visit each node once |
 | **Space** | O(<em>h</em>) | bound to height of tree |
 
-#### 100. Same Tree
+#### [100. Same Tree](https://leetcode.com/problems/same-tree/)
 
 `I: p = [1,2,3], q = [1,2,3]`<br/>
 `O: True`<br/>
 
 - We check our base cases:
   - if there's no `p` node _*and*_ there's not `q` node it's `True`
-    - they're **both** _equally_ empty and therfore technically the same
+    - they're **both** _equally_ empty and therefore technically the same
   - if there's no `p` node _*OR*_ there's not `q` node it's `False`
   - then we check the value of `p`'s root and `q`'s root, if the values aren't the same it's `False`
 - After those 3 checks, we recursively call the function to run these 3 checks on again on:
@@ -64,11 +64,11 @@ def inorderTraversal(self, root: TreeNode) -> List[int]:
 ```python
 def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
   if not p and not q:
-      return True
+    return True
   if not q or not p:
-      return False
+    return False
   if p.val != q.val:
-      return False
+    return False
   return isSameTree(p.left, q.left) and isSameTree(p.right, q.right)
 ```
 
@@ -77,7 +77,7 @@ def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
 | **Time**  | O(<em>n</em>)                      | we visit each node once                 |
 | **Space** | O(log(<em>n</em>)) / O(<em>n</em>) | best case of balanced tree / worst case |
 
-#### 101. Symmetric Tree
+#### [101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)
 
 `I: [1,2,2,3,4,4,3]`<br/>
 `O: True`<br/>
@@ -93,17 +93,16 @@ def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
 
 ```python
 def treeHelper(leftNode, rightNode):
-    if leftNode is None and rightNode is None:
-        return True
-    if leftNode is None or rightNode is None:
-        return False
-    return (leftNode.val == rightNode.val) and
-    treeHelper(leftNode.left, rightNode.right) and
-    treeHelper(leftNode.right, rightNode.left)
+  if not leftNode and not rightNode: return True
+  if not leftNode or not rightNode: return False
 
+  return (leftNode.val == rightNode.val) and
+  treeHelper(leftNode.left, rightNode.right) and
+  treeHelper(rightNode.left, leftNode.right)
 
-def isSymmetric(self, root: TreeNode) -> bool:
-  return treeIsSymmetric(root.left, root.right)
+class Solution:
+  def isSymmetric(self, root: TreeNode) -> bool:
+    return treeHelper(root.left, root.right)
 ```
 
 |           | Big O         | Why                                     |
@@ -111,15 +110,15 @@ def isSymmetric(self, root: TreeNode) -> bool:
 | **Time**  | O(<em>n</em>) | we traverse the tree only once          |
 | **Space** | O(<em>n</em>) | recursive method bound by tree's height |
 
-#### 102. Binary Tree Level Order Traversal - (Breadth First Search)
+#### [102. Binary Tree Level Order Traversal - (Breadth First Search)](https://leetcode.com/problems/binary-tree-level-order-traversal/)
 
 `I: root = [3,9,20,null,null,15,7]`<br/>
 `O: [[3],[9,20],[15,7]]`<br/>
 
 - Initialize an empty `result` array for the final result
 - Create a queue from Python's `Colletions` data structure containter
-- Initialize the queue by addding the root
-- Being the while loop, so while the queue is _not_ empty we:
+- Initialize the queue by adding the root
+- Begin the while loop, so while the queue is _not_ empty we:
   - Create a `qLen` variable equal to `len(q)` to ensure we iterate 1 level at a time
   - Create an empty `level` array for the current-level node we'll add to it
   - Next we'll iterate over the range of nodes on each level, popping the left once first
@@ -137,16 +136,16 @@ def levelOrder(self, root: TreeNode) -> List[List[int]]:
   q.append(root) # add root to queue
 
   while q: # while queue is non-empty
-      qLen = len(q) # ensures we iterate 1 level at a time
-      level = [] # with nodes from that level, we add to their own list
-      for i in range(qLen): # we add the items from all our lists to the result list for totla
-          node = q.popleft() # First In First Out
-          if node: # check that its not null
-              level.append(node.val) # add node to our curr-level array
-              q.append(node.left) # add its children to be added next
-              q.append(node.right) # add its children to be added next
-      if level: # accounts for null nodes
-          res.append(level) # after we've processed all nodes on level, add our level results to our result array
+    qLen = len(q) # ensures we iterate 1 level at a time
+    level = [] # with nodes from that level, we add to their own list
+    for i in range(qLen): # we add the items from all our lists to the result list for totla
+      node = q.popleft() # First In First Out
+      if node: # check that its not null
+        level.append(node.val) # add node to our curr-level array
+        q.append(node.left) # add its children to be added next
+        q.append(node.right) # add its children to be added next
+    if level: # accounts for null nodes
+      res.append(level) # after we've processed all nodes on level, add our level results to our result array
   return res
 ```
 
@@ -155,7 +154,7 @@ def levelOrder(self, root: TreeNode) -> List[List[int]]:
 | **Time**  | O(<em>n</em>) | we visit every node once                                                             |
 | **Space** | O(<em>n</em>) | queue at any given time could have up to n/2 elements, which rounds to O(<em>n</em>) |
 
-#### 108. Convert Sorted Array to Binary Search Tree
+#### [108. Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
 
 `I: nums = [-10,-3,0,5,9]`<br/>
 `O: [0,-3,9,-10,null,5]`<br/>
@@ -170,13 +169,13 @@ def levelOrder(self, root: TreeNode) -> List[List[int]]:
 
 ```python
 def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
-    if not nums:
-        return None
-    mid = len(nums)//2
-    node = TreeNode(nums[mid])
-    node.left = self.sortedArrayToBST(nums[:mid])
-    node.right = self.sortedArrayToBST(nums[mid+1:])
-    return node
+  if not nums:
+    return None
+  mid = len(nums)//2
+  node = TreeNode(nums[mid])
+  node.left = self.sortedArrayToBST(nums[:mid])
+  node.right = self.sortedArrayToBST(nums[mid+1:])
+  return node
 ```
 
 |           | Big O                        | Why                                                                                                                             |
@@ -184,7 +183,7 @@ def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
 | **Time**  | O(<em>n</em>)                | we visit each node once                                                                                                         |
 | **Space** | O(<em>n</em>log(<em>n</em>)) | recursion is O(<em>n</em>) but array-splitting is O(log(<em>n</em>)) so total _recursion tree_ is <em>n</em> \* log(<em>n</em>) |
 
-#### 111. Minimum Depth of Binary Tree
+#### [111. Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/)
 
 `I: root = [3,9,20,null,null,15,7]`<br/>
 `O: 2`<br/>
@@ -198,11 +197,10 @@ def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
 
 ```python
 def minDepth(self, root: TreeNode) -> int:
-    if not root:
-        return 0
-    if not root.left or not root.right:
-        return 1+ max(self.minDepth(root.left), self.minDepth(root.right))
-    return 1+ min(self.minDepth(root.left), self.minDepth(root.right))
+  if not root: return 0
+  if not root.left or not root.right:
+    return 1+ max(self.minDepth(root.left), self.minDepth(root.right))
+  return 1+ min(self.minDepth(root.left), self.minDepth(root.right))
 ```
 
 |           | Big O         | Why                                     |
@@ -210,7 +208,7 @@ def minDepth(self, root: TreeNode) -> int:
 | **Time**  | O(<em>n</em>) | we traverse each node only once         |
 | **Space** | O(<em>h</em>) | recursive call stack for height of tree |
 
-#### 144. Binary Tree Preorder Traversal - Node, Left, Right
+#### [144. Binary Tree Preorder Traversal - Node, Left, Right](https://leetcode.com/problems/binary-tree-preorder-traversal/)
 
 `I: rroot = [1,null,2,3]`<br/>
 `O: [1,2,3]`<br/>
@@ -249,7 +247,7 @@ def preorderTraversal(self, root: TreeNode) -> List[int]:
 | **Time**  | O(<em>n</em>) | we visit each node once |
 | **Space** | O(<em>h</em>) | bound to height of tree |
 
-#### 145. Binary Tree Postorder Traversal - Left, Right, Node
+#### [145. Binary Tree Postorder Traversal - Left, Right, Node](https://leetcode.com/problems/binary-tree-postorder-traversal/)
 
 `I: rroot = [1,null,2,3]`<br/>
 `O: [1,2,3]`<br/>
@@ -288,7 +286,7 @@ def postorderTraversal(self, root: TreeNode) -> List[int]:
 | **Time**  | O(<em>n</em>) | we visit each node once |
 | **Space** | O(<em>h</em>) | bound to height of tree |
 
-#### 226. Invert Binary Tree
+#### [226. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/)
 
 `I: [4,2,7,1,3,6,9]`<br/>
 `O: [4,7,2,9,6,3,1]`<br/>
@@ -303,9 +301,9 @@ def postorderTraversal(self, root: TreeNode) -> List[int]:
 ```python
 def invertTree(self, root: TreeNode) -> TreeNode:
   if root:
-      root.left,root.right = root.right, root.left
-      invertTree(root.left)
-      invertTree(root.right)
+    root.left,root.right = root.right, root.left
+    invertTree(root.left)
+    invertTree(root.right)
   return root
 ```
 
@@ -340,7 +338,7 @@ def invertTree(self, root: TreeNode) -> TreeNode:
 |  **Time**   | O(<em>n</em>) | we traverse each node only once         |
 |  **Space**  | O(<em>h</em>) | recursive call stack for height of tree | -->
 
-#### 637. Average Levels of Binary Tree
+#### [637. Average Levels of Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/)
 
 `I: [4,2,7,1,3,6,9]`<br/>
 `O: [4,7,2,9,6,3,1]`<br/>
@@ -360,22 +358,22 @@ def invertTree(self, root: TreeNode) -> TreeNode:
 
 ```python
 def averageOfLevels(self, root: TreeNode) -> List[float]:
-    res = []
-    q = collections.deque()
-    q.append(root)
+  res = []
+  q = collections.deque()
+  q.append(root)
 
-    while q:
-        qLen = len(q)
-        level = []
-        for i in range(qLen):
-            node = q.popleft()
-            if node:
-                level.append(node.val)
-                q.append(node.left)
-                q.append(node.right)
-        if level:
-            res.append(sum(level)/len(level))
-    return res
+  while q:
+    qLen = len(q)
+    level = []
+    for i in range(qLen):
+      node = q.popleft()
+      if node:
+        level.append(node.val)
+        q.append(node.left)
+        q.append(node.right)
+    if level:
+      res.append(sum(level)/len(level))
+  return res
 ```
 
 |           | Big O         | Why                                                                                  |
