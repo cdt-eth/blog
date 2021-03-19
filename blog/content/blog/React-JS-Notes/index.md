@@ -47,6 +47,20 @@ const Employee = (props) => {
 };
 ```
 
+Another quick not, we can use another [ES6 method called "Named Parameters"](https://exploringjs.com/impatient-js/ch_callables.html#named-parameters) to assign alias's to any/all props by adding a colon after it and then the alias we want to use. We'll then pass the alias down below in the JSX. This is useful, for instance, if we're passing in a of nested props and we have two `id` props or `name` props. As in, say we have a department `name` and and employee `name` parameter, now this is a bad naming convention, but I'm just trying to explain why aliasing could come in handy. We can alias them as `{name: deptName, name: employeeName}` for instance.
+
+```javascript
+const Employee = (props) => {
+    const { firstname: first, lastname: last, job: myJob } = props;
+    return (
+        <div>
+        <h1> Name: {first} {last} </h1>
+        <h2> Job: {myJob} </h2>
+        </div>
+    );
+};
+```
+
 
 
 ### Array Destructuring
