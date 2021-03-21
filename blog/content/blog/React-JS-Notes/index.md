@@ -63,4 +63,22 @@ const Employee = (props) => {
 
 
 
-### Array Destructuring
+### useState
+This is the first React hooks we're going over.
+
+```javascript
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <h3>The count is: {count}</h3>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <button onClick={() => setCount(count - 1)}>Decrement</button>
+    </div>
+  );
+}
+```
+
+
+<!-- ### Array Destructuring -->
