@@ -64,12 +64,13 @@ const Employee = (props) => {
 
 
 ### useState
-This is the first React hooks we're going over.
+This is the first React hook we're going over. You'll see inside our component we immediately have [array destructuring](https://www.freecodecamp.org/news/array-destructuring-in-es6-30e398f21d10/). This is common practice with hooks. We have two variable set our initial state. The first variable is going to be our `state` variable and the second is the updapter function. It's common practice to name the updater function a `use` + first state variable name to be explicit with what's going on. For instance: `[count, setCount]`, `[age, setAge]`, `[name, setName]` etc etc. Then, on the right side, we have our actual `useState()` function. Within the parentheses we put in our __**initial state**__. So for `setCount` in our `Counter` component, it'd be wise to set it to 0 at the start. However, if we were using an input form, we'd pass in an empty string like this `useState('')`. We need the field to be empty in preparation for the user to add in what they want to.
+
+In the buttons, you'll see we have an empty arrow function that calls `setCount` and mutates state.
 
 ```javascript
 export default function Counter() {
   const [count, setCount] = useState(0);
-
   return (
     <div>
       <h3>The count is: {count}</h3>
