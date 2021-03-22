@@ -5,6 +5,8 @@ title: React & Javascript Notes
 description: Concepts I'm learning about React & Javascript
 ---
 
+Thank you to Anthony Sistilli for his [amazing React playlist on YouTube](https://www.youtube.com/watch?v=OH4msPNM2CI&list=PLQg6GaokU5CyvExiaMgXP_BS5WWNBfZJN&ab_channel=AnthonySistilli). I've gone through a lot of React posts & videos to help me learn it and this is by far the resource that made it all stick. I really appreciate his approach to teach and the clarity of this examples. I know it sounds cheesy but these videos truly were the "lightbulb turning on moment" for me.
+
 # Props
 
 ---
@@ -171,20 +173,20 @@ useEffect(
 )
 ```
 
-|  #  |                     Code                      | cDM | cDU | cWU |                                       Notes                                       |
-| :-: | :-------------------------------------------: | :-: | :-: | :-: | :-------------------------------------------------------------------------------: |
-|  1  |             useEffect(() => {});              | ✅  | ✅  |  X  | No array will runs on everything, equivalent to passing everything into the array |
-|  2  |           useEffect(() => {}, []);            | ✅  | ❌  | ❌  |                          Run on each mount, no on Update                          |
-|  3  |         useEffect(() => {}, [state]);         | ✅  | ✅  | ❌  |                           Runs every time state changes                           |
-|  4  |   useEffect(() => { return () => {}}, []);    | ✅  | ❌  | ✅  |              Will run on unmount, not run update because empty array              |
-|  5  | useEffect(() => { return () => {}}, [state]); | ✅  | ❌  | ✅  |              Will run on unmount, not run update because empty array              |
+|  #  |                     Code                      | cDM | cDU | cWU |                                    Notes                                     |
+| :-: | :-------------------------------------------: | :-: | :-: | :-: | :--------------------------------------------------------------------------: |
+|  1  |             useEffect(() => {});              | ✅  | ✅  |  X  | No array will run on everything, equivalent to passing everything into array |
+|  2  |           useEffect(() => {}, []);            | ✅  | ❌  | ❌  |                         Runs on mount, not on update                         |
+|  3  |         useEffect(() => {}, [state]);         | ✅  | ✅  | ❌  |                     Runs every time said `state` changes                     |
+|  4  |   useEffect(() => { return () => {}}, []);    | ✅  | ❌  | ✅  |           Will run on unmount, not run update because empty array            |
+|  5  | useEffect(() => { return () => {}}, [state]); | ✅  | ✅  | ✅  |           Will run on unmount, not run update because empty array            |
 
 ## 1: useEffect(() => {});
 
-In this example, we have the empty arrow function but no optional array passed in as the second arguement.
+In this example, we have the empty arrow function but no optional array passed in as the second arguement. Since we didn't pass the array as the optional second arguement, it will be treated as if we passed everything into it. Therefore it will run on mount and on every update for everything. This is not best practice because we can have other state or things like Redux affected by this.
 
 ```javascript
-// componentDidMount
+// will run on everything
 useEffect(() => {
   console.log("The use effect ran")
 })
@@ -192,10 +194,10 @@ useEffect(() => {
 
 ## 2: useEffect(() => {}, []);
 
-Here we've added in the empty array.
+Here we've added in the empty array. Here we add a `state` variable, but that's optional. You can think of this as the `componentDidMount` lifecycle hook. It will run on mount, but not ever again. We didn't specify a `state` variable to tie it to so it won't re-render on any `state` changes.
 
 ```javascript
-// componentWillUnmount
+// componentDidMount
 useEffect(() => {
   console.log("The use effect ran")
 }, [])
@@ -203,7 +205,7 @@ useEffect(() => {
 
 ## 3: useEffect(() => {}, [state]);
 
-Now, we've added a variable to our state.
+Now, we've added a variable to our state. This will now run on mount and on every update. Think of it as a `componentDidMount` & `componentDidUpdate`. It will only recall this function when the state variable we passed it is changed specifically. You can add multiple variables in this array. Again, to be clear, if we were to have a second variable, but we **don't pass it into the array**, it won't run `useEffect` when it's changed. It must be passed.
 
 ```javascript
 // componentDidUpdate
@@ -214,9 +216,10 @@ useEffect(() => {
 
 ## 4: useEffect(() => { return () => {}}, []);
 
-By adding a return statement to
+By adding a return function, it will now work like a `componentWillMount`. So, in this example, it will run on mount, as always, it will **not** run on update since no `state` variable was passed to it, and now it will run on the component's unmount.
 
 ```javascript
+// componentWillUnmount
 useEffect(() => {
   console.log("The use effect ran")
   return () => {
@@ -227,9 +230,10 @@ useEffect(() => {
 
 ## 5: useEffect(() => { return () => {}}, [state]);
 
-Lastly, we've added both a return statement and a state variable in our useEffect function.
+Lastly, we've added both a return statement and a state variable in our useEffect function. Now, it's not going to run as a typical `componentWillUnmount`. It will run as a `componentWillUnmount` specifically when an item in the array changes. For instance, when our count changes, the second `console.log()` runs first, printing our current count before change, then it will update, and **THEN** the first `console.log()` runs with the new updated count. Lastly, once we unmount our component, that second `console.log()` will run one final time.
 
 ```javascript
+// componentWillUnmount
 useEffect(() => {
   console.log(`The count has updated to ${count}`)
   return () => {
