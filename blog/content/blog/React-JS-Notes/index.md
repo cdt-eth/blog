@@ -171,17 +171,69 @@ useEffect(
 )
 ```
 
-|                   Code                   | cDM | cDU | cWU |                          Notes                          |
-| :--------------------------------------: | :-: | :-: | :-: | :-----------------------------------------------------: |
-|           useEffect(() => {});           | ✅  |  X  |  X  |                     Runs every time                     |
-|         useEffect(() => {}, []);         | ✅  | ❌  | ❌  |             Run on each mount, no on Update             |
-|      useEffect(() => {}, [state]);       | ✅  | ✅  | ❌  |              Runs every time state changes              |
-| useEffect(() => { return () => {}}, []); | ✅  | ❌  | ✅  | Will run on unmount, not run update because empty array |
+|  #  |                     Code                      | cDM | cDU | cWU |                                       Notes                                       |
+| :-: | :-------------------------------------------: | :-: | :-: | :-: | :-------------------------------------------------------------------------------: |
+|  1  |             useEffect(() => {});              | ✅  | ✅  |  X  | No array will runs on everything, equivalent to passing everything into the array |
+|  2  |           useEffect(() => {}, []);            | ✅  | ❌  | ❌  |                          Run on each mount, no on Update                          |
+|  3  |         useEffect(() => {}, [state]);         | ✅  | ✅  | ❌  |                           Runs every time state changes                           |
+|  4  |   useEffect(() => { return () => {}}, []);    | ✅  | ❌  | ✅  |              Will run on unmount, not run update because empty array              |
+|  5  | useEffect(() => { return () => {}}, [state]); | ✅  | ❌  | ✅  |              Will run on unmount, not run update because empty array              |
 
-<!-- |                                          | useEffect(() => {}, []); | Text | And more |                                 | -->
+## 1: useEffect(() => {});
 
-<!--
-|           | Big O         | Why                                                                         |
-| --------- | ------------- | --------------------------------------------------------------------------- |
-| **Time**  | O(<em>n</em>) | string manipulation time based on number of <em>n</em> characters in stridasfasfng |
-| **Space** | O(<em>n</em>) | creates a list and `.join` brings the string back together                  | -->
+In this example, we have the empty arrow function but no optional array passed in as the second arguement.
+
+```javascript
+// componentDidMount
+useEffect(() => {
+  console.log("The use effect ran")
+})
+```
+
+## 2: useEffect(() => {}, []);
+
+Here we've added in the empty array.
+
+```javascript
+// componentWillUnmount
+useEffect(() => {
+  console.log("The use effect ran")
+}, [])
+```
+
+## 3: useEffect(() => {}, [state]);
+
+Now, we've added a variable to our state.
+
+```javascript
+// componentDidUpdate
+useEffect(() => {
+  console.log("The use effect ran")
+}, [count])
+```
+
+## 4: useEffect(() => { return () => {}}, []);
+
+By adding a return statement to
+
+```javascript
+useEffect(() => {
+  console.log("The use effect ran")
+  return () => {
+    console.log("the return is being ran")
+  }
+}, [])
+```
+
+## 5: useEffect(() => { return () => {}}, [state]);
+
+Lastly, we've added both a return statement and a state variable in our useEffect function.
+
+```javascript
+useEffect(() => {
+  console.log(`The count has updated to ${count}`)
+  return () => {
+    console.log(`we are in the cleanup - the count is ${count}`)
+  }
+}, [count])
+```
