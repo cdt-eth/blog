@@ -178,8 +178,8 @@ useEffect(
 |  1  |             useEffect(() => {});              | ✅  | ✅  |  X  | No array will run on everything, equivalent to passing everything into array |
 |  2  |           useEffect(() => {}, []);            | ✅  | ❌  | ❌  |                         Runs on mount, not on update                         |
 |  3  |         useEffect(() => {}, [state]);         | ✅  | ✅  | ❌  |                     Runs every time said `state` changes                     |
-|  4  |   useEffect(() => { return () => {}}, []);    | ✅  | ❌  | ✅  |           Will run on unmount, not run update because empty array            |
-|  5  | useEffect(() => { return () => {}}, [state]); | ✅  | ✅  | ✅  |           Will run on unmount, not run update because empty array            |
+|  4  |   useEffect(() => { return () => {}}, []);    | ✅  | ❌  | ✅  |        Will run on unmount, not run on update because array is empty         |
+|  5  | useEffect(() => { return () => {}}, [state]); | ✅  | ✅  | ✅  |               Will run mount, specific `state` update, and on                |
 
 ## 1: useEffect(() => {});
 
