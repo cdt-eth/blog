@@ -21,19 +21,7 @@ I'll be learning Vue 3 by [building projects in this YouTube playlist](https://w
 
 This project uses the [Open Movie Database API](https://www.omdbapi.com/) to look up movie & show data like you would on IMDB.
 
-<!-- |         Home Screen         |         Home Screen         |         Home Screen         |
-| :-------------------------: | :-------------------------: | :-------------------------: |
-| ![](./movie1.jpeg "movie1") | ![](./movie2.jpeg "movie2") | ![](./movie3.jpeg "movie2") | -->
-
-<p float="left">
-  <img src="movie1.jpeg" width="100" />
-  <img src="movie2.jpeg" width="100" />
-  <img src="movie3.jpeg" width="100" />
-<!-- <img src="./movie1.jpeg" width="100" />
-<img src="./movie2.jpeg" width="100" />
-<img src="./movie3.jpeg" width="100" /> -->
-
-</p>
+![](./movie.jpg "movie")
 
 ```javascript
 ```
@@ -53,10 +41,6 @@ This project uses the [Open Movie Database API](https://www.omdbapi.com/) to loo
 **Tutorial: ["Build a Movie App With Vue JS - A Vue 3 Beginners tutorial"](https://www.youtube.com/watch?v=AjV7k7t78Ik&list=PLR8vUZDE6IeO_xCvdbfT1rtL4r4jc8ixm&index=2&ab_channel=TylerPotts) **
 
 This project uses the [Open Movie Database API](https://www.omdbapi.com/) to look up movie & show data like you would on IMDB.
-
-|         Home Screen         |     Movie Search Screen     |     Movie Detail Screen     |
-| :-------------------------: | :-------------------------: | :-------------------------: |
-| ![](./movie1.jpeg "movie1") | ![](./movie2.jpeg "movie2") | ![](./movie3.jpeg "movie2") |
 
 ```javascript
 ```

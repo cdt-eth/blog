@@ -48,6 +48,7 @@ a:hover {
 }
 .yellow {
   color: #dac716;
+  color: white;
 }
 .purple {
   color: #03406d;
@@ -146,13 +147,14 @@ table code {
   border-radius: 3px !important;
   font-size: 1rem !important;
 }
-p code{
-  padding: 4px!important;
-  color: var(--black-800)!important;
-  background-color: #e3e6e8!important;
-  border-radius: 3px!important;
-  font-size:1rem !important;
+p code {
+  padding: 4px !important;
+  color: var(--black-800) !important;
+  background-color: #e3e6e8 !important;
+  border-radius: 3px !important;
+  font-size: 1rem !important;
 }
-.gatsby-resp-image-wrapper{
+
+.gatsby-resp-image-wrapper {
   max-width: 100% !important;
 }
