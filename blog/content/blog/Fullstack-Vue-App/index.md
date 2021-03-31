@@ -12,7 +12,7 @@ This is my first big Vue project I'm building.
 ---
 
 **Repo: [Photobook](https://github.com/christiandavidturner/Photobook) ** <br/>
-**Website: [photobook.netlify.app](https://photobook.netlify.app/) ** <br/>
+**Website: [my-photobook.netlify.app](https://photobook.netlify.app/) ** <br/>
 **Tutorial: ["Full Stack Photobook App | Vue, GraphQL, AWS Amplify"](https://www.youtube.com/watch?v=w0p7ywfHesw) **
 
 #### Project Setup & Config:
@@ -44,4 +44,31 @@ Using [Vue Router's name routes](https://router.vuejs.org/guide/essentials/named
 
 #### Create Signup Page:
 
-Now
+We setup our two methods `signUp` and `confirmSignUp` that check if we have a username & password in the fields then dispatch actions to our Vuex store. Once successful, it will push us to the newly created `/albums` page via `this.$router.push("/albums");`.
+
+#### Create Nav:
+
+We now have navigation that will check if we're logged in or out. It will also display our Signup option and our Albums nav item, once we're logged it.
+
+![](./nav.png "nav")
+
+#### Add Router Guards:
+
+This prevents non-logged in users from typing in `/albums` into the browser and navigating directly to a "protected" page (for logged in users). So what this code in our router folder's `index.js` does, is that if the route's (page's) `meta` tag property requires auth it will return `true` and secondly, the `const isAuthenticated = await Auth.currentUserInfo()` is an AWS method to check for authentication. If both are true, we proceed to the protected route, if not (if either are `false`), we'll send the user back to the home page until they log in successfully.
+
+```javascript
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  const isAuthenticated = await Auth.currentUserInfo()
+
+  if (requiresAuth && !isAuthenticated) {
+    next("/")
+  } else {
+    next()
+  }
+})
+```
+
+### GraphQL:
+
+This pre
