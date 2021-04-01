@@ -69,6 +69,26 @@ router.beforeEach(async (to, from, next) => {
 })
 ```
 
-### GraphQL:
+### Storage:
 
-This pre
+We add an AWS S3 bucket for storage using `amplify add storage` as well as AWS AppSync API using `amplify add api` and then after conifuration checked to make sure it had successfully been added using `amplify status`. Then we updated our default GraphQL schema to work for our album needs.
+
+![](./storage.png "storage")
+
+![](./storage2.png "storage2")
+
+### GraphQL Schema:
+
+I copied the GraphQL schema [from the given project code](https://github.com/ErikCH/TraversyMediaAWSPhotoBook/blob/master/amplify/backend/api/AmplifyPhotosApi/schema.graphql), and after an `amplify push` we're good to go. This auto-generated our `graphql` folder with our mutations, queries, and subscriptions.
+
+![](./graph.png "graph")
+
+### Create Albums & Photos:
+
+We created our 3 albums methods: `createAlbum`, `getAlbum`, and `getAlbumsData` and connect them to our Vuex store with our GraphQL queries. Then we fleshed out our Albums page and created our Create Album button that calls the method to create it.
+
+For creating the photos, we're grabbing the AWS config data and constructing the photo and extensiona dn creating that as input data and then pushing the storage data to the S3 bucket. Once that works, we create the mutation in the GraphQL operation which then resolves the promise.
+
+### Update Albums:
+
+We
