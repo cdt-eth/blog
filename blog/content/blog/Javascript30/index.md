@@ -101,10 +101,42 @@ This is my first big Vue project I'm building.
 
 #### Topics Covered:
 
--
+- CSS variables (non-SASS)
+- `querySelectorAll` & `setProperty`
+- `change` vs `mousemove` events
 
 ```html
-<script></script>
+<script>
+  // querySelector returns a "NodeList"
+  // NodeList prototype's have forEach property
+  // arrays have forEach already but now, we don't have to convert our NL to an array
+  // it's native in NodeList now
+  const inputs = document.querySelectorAll(".controls input")
+
+  // when its called,
+  function handleUpdate() {
+    // get the 'data-sizing' custom attribute we add
+    // in this case it's "px"
+    const suffix = this.dataset.sizing || ""
+
+    // set the "name" variable property to the input's value plus the suffix (px)
+    document.documentElement.style.setProperty(
+      `--${this.name}`,
+      this.value + suffix
+    )
+  }
+
+  // loop over each input
+  // listen for chagne event
+  // when its called, call handleUpdate function
+  // -------------------------------------------------
+  // THIS: when you lift your finger off the input (i.e. its done moving)
+  // and thus a value is selected, that value is our value
+  inputs.forEach(input => input.addEventListener("change", handleUpdate))
+
+  // THIS: when the value changes AT ALL as we're sliding around from left to right
+  inputs.forEach(input => input.addEventListener("mousemove", handleUpdate))
+</script>
 ```
 
 ### 04 - Array Cardio 1:
