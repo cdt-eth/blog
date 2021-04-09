@@ -143,10 +143,68 @@ This is my first big Vue project I'm building.
 
 #### Topics Covered:
 
--
+- `filter()`
+- `map()`
+- `sort()`
+- `reduce()`
+- `console.table()`
 
 ```html
-<script></script>
+<script>
+  // 1. Filter the list of inventors for those who were born in the 1500's
+  const fifteen = inventors.filter(
+    inventor => inventor.year >= 1500 && inventor.year <= 1599
+  )
+
+  // 2. Give us an array of the inventors first and last names
+  const fullNames = inventors.map(
+    inventor => `${inventor.first} ${inventor.last}`
+  )
+
+  // 3. Sort the inventors by birthdate, oldest to youngest
+  const ordered = inventors.sort((a, b) => (a.year > b.year ? 1 : -1))
+
+  // 4. How many years did all the inventors live all together?
+  const totalYears = inventors.reduce((total, inventor) => {
+    return total + (inventor.passed - inventor.year)
+  }, 0)
+
+  // 5. Sort the inventors by years lived
+  const oldest = inventors.sort(function(a, b) {
+    const last = a.passed - a.year
+    const next = b.passed - b.years
+    return last > next ? 1 : -1
+  })
+
+  // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
+  // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+  const category = document.querySelector(".mw-category")
+  // <div class="mw-category">...</div>
+
+  const links = Array.from(category.querySelectorAll("a"))
+  // (39) [a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a]
+
+  const de = links
+    .map(link => link.textContent)
+    .filter(streetName => streetName.includes("de"))
+  // (12) ["Boulevard de l'Amiral-Bruix", "Boulevard des Capucines", "Boulevard de la Chapelle", "Boulevard de Clichy", "Boulevard de l'Hôpital", "Boulevard des Italiens", "Boulevard de la Madeleine", "Boulevard de Magenta", "Boulevard Marguerite-de-Rochechouart", "Boulevard de Sébastopol", "Boulevard de Strasbourg", "Boulevard de la Zone"]
+
+  // 7. Sort the people alphabetically by last name
+  const alpha = people.sort(function(last, next) {
+    const [aLastName, aFirstName] = last.split(", ")
+    const [bLastName, bFirstName] = next.split(", ")
+    return aLastName > bLastName ? 1 : -1
+  })
+
+  // 8. Reduce Exercise: Sum up the instances of each of these
+  const transportation = data.reduce(function(obj, item) {
+    if (!obj[item]) {
+      obj[item] = 0
+    }
+    obj[item]++
+    return obj
+  }, {})
+</script>
 ```
 
 ### 05 - Flex Panels Image Gallery:
