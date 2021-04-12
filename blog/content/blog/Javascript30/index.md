@@ -211,30 +211,168 @@ This is my first big Vue project I'm building.
 
 #### Topics Covered:
 
--
+- Nested Flexbox containers
+- `transitionY` transform property
 
 ```html
-<script></script>
+<script>
+  // select all panels
+  const panels = document.querySelectorAll(".panel")
+
+  // add an open class
+  function toggleOpen() {
+    this.classList.toggle("open")
+  }
+
+  // add an open-active class to any event with property named "flex" (flex or flex-grow)
+  function toggleActive(e) {
+    if (e.propertyName.includes("flex")) {
+      this.classList.toggle("open-active")
+    }
+  }
+
+  // when clicked, go find this function and run it
+  // we don't do toggleOpen() because that will run on page load
+  panels.forEach(panel => panel.addEventListener("click", toggleOpen))
+  panels.forEach(panel => panel.addEventListener("transitionend", toggleActive))
+</script>
 ```
 
 ### 06 - Ajax Type Ahead:
 
+We're push our `data` array to our empty cities array we initialized so we'll have an array within an array if we just pass it as `cities.push(data)` but if we use the [ES6 spread operator](https://codeburst.io/a-simple-guide-to-destructuring-and-es6-spread-operator-e02212af5831) (`...`) we're just passing the _**data**_ from one array into another. So with `cities.push(...data)` we won't have nested arrays.
+
 #### Topics Covered:
 
--
+- `RegExp` Object
+- `fetch` with Vanilla JS
+
+We hit the endpoint, which returns a Promise. THEN, we take that response, which returns a Promise, and parse the json with `.json()`. THEN, we take that data, as `data`, and we can `console.log()` it to see it.
+
+```javascript
+fetch("http://example.com/movies.json")
+  .then(response => response.json())
+  .then(data => console.log(data))
+```
 
 ```html
-<script></script>
+<script>
+  const endpoint =
+    "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json"
+
+  const cities = []
+
+  // we're push our data array to our empty cities array we initialized so we'll have an array within an array if we just pass it as `cities.push(data)` but if we use the ES6 spread operator `...` we're just passing the _*data*_ from one array into another. so with `cities.push(...data)` we won't have nested arrays
+  fetch(endpoint).then(blob => blob.json().then(data => cities.push(...data)))
+
+  function findMatches(wordToMatch, cities) {
+    return cities.filter(place => {
+      // g = global, i = insensitive (lower & uppercase)
+      const regex = new RegExp(wordToMatch, "gi")
+      return place.city.match(regex) || place.state.match(regex)
+    })
+  }
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  }
+
+  function displayMatches() {
+    const matchArray = findMatches(this.value, cities)
+    const html = matchArray
+      .map(place => {
+        const regex = new RegExp(this.value, "gi")
+        const cityName = place.city.replace(
+          regex,
+          `<span class="hl">${this.value}</span>`
+        )
+        const stateName = place.state.replace(
+          regex,
+          `<span class="hl">${this.value}</span>`
+        )
+        return `
+      <li>
+        <span class="name">${cityName}, ${stateName}</span>
+        <span class="population">${numberWithCommas(place.population)}</span>
+      </li>
+    `
+      })
+      .join("")
+    suggestions.innerHTML = html
+  }
+
+  const searchInput = document.querySelector(".search")
+  const suggestions = document.querySelector(".suggestions")
+
+  searchInput.addEventListener("change", displayMatches)
+  searchInput.addEventListener("keyup", displayMatches)
+</script>
 ```
 
 ### 07 - Array Cardio 2:
 
 #### Topics Covered:
 
--
+- `.some()`
+- `.every()`
+- `.find()`
+- `.findIndex()`
 
 ```html
-<script></script>
+<script>
+  // ## Array Cardio Day 2
+
+  const people = [
+    { name: "Wes", year: 1988 },
+    { name: "Kait", year: 1986 },
+    { name: "Irv", year: 1970 },
+    { name: "Lux", year: 2015 },
+  ]
+
+  const comments = [
+    { text: "Love this!", id: 523423 },
+    { text: "Super good", id: 823423 },
+    { text: "You are the best", id: 2039842 },
+    { text: "Ramen is my fav food ever", id: 123523 },
+    { text: "Nice Nice Nice!", id: 542328 },
+  ]
+
+  // Some and Every Checks
+  // Array.prototype.some() // is at least one person 19 or older?
+  // const isAdult = people.some(function (person) {
+
+  const isAdult = people.some(person => {
+    const currentYear = new Date().getFullYear()
+    return currentYear - person.year >= 19
+  })
+
+  console.log({ isAdult })
+
+  // Array.prototype.every() // is everyone 19 or older?
+  const allAdults = people.every(person => {
+    const currentYear = new Date().getFullYear()
+    return currentYear - person.year >= 19
+  })
+
+  console.log({ allAdults })
+
+  // Array.prototype.find()
+  // Find is like filter, but instead returns just the one you are looking for
+  // find the comment with the ID of 823423
+  const comment = comments.find(comment => comment.id == 823423)
+
+  console.log(comment)
+
+  // Array.prototype.findIndex()
+  // Find the comment with this ID, delete the comment with the ID of 823423
+  const index = comments.findIndex(comment => comment.id == 823423)
+
+  console.log(index)
+
+  console.table(comments)
+  comments.splice(index, 1)
+  console.table(comments)
+</script>
 ```
 
 ### 08 - HTML5 Canvas:
