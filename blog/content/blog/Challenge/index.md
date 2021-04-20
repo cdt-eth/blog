@@ -48,10 +48,45 @@ Next, I created the `form` in JSX. I started with a wrapped `div` with a simple 
 </div>
 ```
 
+So to the meat. Our `handleSubmit` function is where "everything" happens. First, we call `preventDefault` on our `e` (event). Since forms, by default, submit POST requests, they will reload the page, but we don't use a form for this purpose. Therefore, we want to **_prevent_** it's **_default_** behavior. We'll use our form button to fetch data and therefore don't want our page to reload. Moving on, we do our username validation. The requirements were to check if the `username` was at least 4 characters long. So we're error checking for the opposite. So, with our conditional operator, we say "if there's a `username` AND said length `username` is LESS THAN 4 (characters) then we'll `console.error` our descriptive error message letting our user know that said `username` doesn't meet the given criteria.
+
 ```javascript
+function handleSubmit(e) {
+  e.preventDefault()
+
+  if (username && username.length < 4) {
+    console.error("ERROR:Username must be at least 4 characters long")
+  }
 ```
 
-Below our form, I added this JSX element. It does two things. This is a conditional rendering block. So it will check for the state of taken (i.e. Do we have `taken` state? Is `taken` truthy?). So IF `taken` is true THEN (that's what the `&&` is doing, conditionally checking for the left side to then render the right side) display the `taken` state in an `<h3>` tag.
+Within our `handleSubmit` function we have an asynchronous fetch function that waits for data back from our API. I used string interpolation to dynamically call the API with whatever the `state`/value of our `username` is (i.e. the username the user input).
+
+We then await our response and call `.json()` which we use to [extract a JSON object from the response data](https://dev.to/kishore007k/using-fetch-with-async-await-54od). This returns a Javascript `Promise` so that's why we have to `await` it. I then clean up the code by creating a variable for the nested data and then I assign the boolen value to a `string`. We're ultimately returning `true` or `false` so to display it, it must be a string. I call the Javscript method `.toString()` on the boolean value and then assign it to `state` using our `setTaken()` hook.
+
+```javascript
+async function fetchData() {
+  const response = await fetch(
+    `https://hxj1tck8l1.execute-api.us-east-1.amazonaws.com/default/users/taken?username=${username}`
+  )
+
+  const data = await response.json()
+  const result = data.taken
+
+  const strResult = result.toString()
+
+  console.log(strResult)
+  setTaken(strResult)
+}
+```
+
+Then, below the function body, we call our async `fetchData` function, and then we'll reset our `username` value in the input field back to an empty string. This does two things, one it will visually reset the field value in the DOM which indicates to the user that they can search again, and secondly, it resets the value in our hook to be ready to receive a new value upon next submit.
+
+```javascript
+fetchData()
+setUsername("")
+```
+
+Below our form, I added this JSX element. It does two things. This is a conditional rendering block. So it will check for the state of taken (i.e. Do we have `taken` state? Is `taken` truthy?). So IF `taken` is true THEN (that's what the `&&` is doing, conditionally checking for the left side to then render the right side) display the `taken` state in an `<h3>` tag. This will display "True" if the `username` that the username IS TAKEN (i.e. not valid) or "False" if the `username` is not taken (i.e. free to use).
 
 ```javascript
 {
