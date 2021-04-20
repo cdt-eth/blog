@@ -48,8 +48,6 @@ Next, I created the `form` in JSX. I started with a wrapped `div` with a simple 
 </div>
 ```
 
-d
-
 ```javascript
 ```
 
@@ -128,6 +126,8 @@ export default function App() {
 
 **Prompt:** _Create a histogram of words from given statement._
 
+#### Full Code
+
 ```python
 word = "This line is not the end.\nThis line will be the last!\nOne more thing Tulip is dog-friendly."
 
@@ -147,4 +147,71 @@ def histrogram(word):
 
 
 histrogram(word)
+```
+
+### 03 - Vue: Word Histogram
+
+#### Full Code
+
+**Prompt:** _Create a way to filter the pizzas by topping._
+
+```javascript
+<template>
+  <div>
+    <h1>Pizzas!</h1>
+
+    <form @submit.prevent="filterPizza">
+      <input type="text" placeholder="ex. Bacon" v-model="pizzaTopping" />
+      <button type="submit">Search</button>
+    </form>
+
+    <br />
+
+    <div
+      class="panel panel-default"
+      v-for="pizza in pizzas"
+      v-bind="pizza"
+      :key="pizza.name"
+      v-if="pizza.toppings.includes(searchTopping)"
+    >
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ pizza.name }}</h3>
+      </div>
+      <div class="panel-body">
+        <h4>Toppings</h4>
+        <ul>
+          <li v-for="topping in pizza.toppings" :key="topping">
+            {{ topping }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "PizzaList",
+  data() {
+    return {
+      // topping: "",
+      searchTopping: "",
+      pizzaTopping: "",
+      pizzas: [],
+    }
+  },
+  created() {
+    fetch("/pizzas.json")
+      .then(response => response.json())
+      .then(pizzas => (this.pizzas = pizzas))
+  },
+  methods: {
+    filterPizza() {
+      this.searchTopping = this.pizzaTopping
+      console.log(this.pizzaTopping)
+      this.pizzaTopping = ""
+    },
+  },
+}
+</script>
 ```
