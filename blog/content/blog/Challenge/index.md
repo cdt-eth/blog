@@ -6,9 +6,206 @@ description: Challenges Recap
 draft: true
 ---
 
-I recap of 2 coding challeneges I completed.
+I recap of coding challeneges I had.
 
-### 01 - React: Username Validation
+### 01 - Javascript: Fetch Movie Data
+
+**Prompt:** _Given a year in the format YYYY, make a GET call to the API to get all the movies for this year. You cannot use the `axios` library or the `fetch` API._
+
+Being a self-taught developer, I've come to my education by starting with the "latest & greatest" so I'd only ever fetched data via `axios` and `fetch` so I enjoyed learning the "vanilla JS" way of doing it with a `Promise` and the `XMLHttpRequest` web API.
+
+First of all we set up our `url` we're calling. I added string interpolation so that we can pass it a year. Then I set up an empty array where we'll push our data to.
+
+```javascript
+const url = `https://jsonmock.hackerrank.com/api/movies?Year=${year}`
+
+const promiseArray = []
+```
+
+We create the new (XMLHttpRequest) request. We call it's `.open()` method and pass it the type of request we want ("GET") and the `url` we're requesting data from. Next, the `.onload()` function will be called after the request is successful. We parse the response data and turn it into JSON, and then we assign that JSON object to our `results` variable. Lastly, we use `Promise.resolve()` that will "fulfill" the `Promise` when the data we pass it (`request.response`), is returned.
+
+```javascript
+const request = new XMLHttpRequest()
+
+request.open("GET", url)
+
+request.onload = function() {
+  if (request.status === 200) {
+    const results = JSON.parse(this.response)
+
+    resolve(request.response)
+```
+
+This bit checks if there's less than 1 data item in the array. We then return the empty `promiseArray`.
+
+```javascript
+var length = results.data.length
+
+if (length < 1) {
+  console.error(`ERROR: No results found for ${year}'s query!`)
+
+  return promiseArray
+}
+```
+
+This part is what displays our data in the DOM. I added a header to show the user which year we're dealing with below, and then I iterate over the `length` of the movie data (length of `results.data`). So we iterate over each item (movie) and then do two things. We first push it (the `Title` of the `data`) to our `promiseArray` to store the data. Next, we use `document.write()` to display an `<li>` with each movie title in the DOM.
+
+```javascript
+document.write(`<h1>Movies from the ${year}</h1>`)
+
+for (i = 0; i <= length - 1; i++) {
+  promiseArray.push(results.data[i].Title)
+
+  document.write(`
+    <ul>
+      <li key=${results.data[i].imdbID}>${results.data[i].Title}</li>
+    </ul>`)
+}
+```
+
+This is the error handling portion. A call can be made successfully, but if the `data` array is empty it's technically an error, for our purposes. We want to return a list of movies, so even though it successfully calls, it can't fetch data that's not there so we need to let the user know that "No Results Found". Underneath that we `.send()` the request. This is the line of code that actually runs the function and sends the request to the server.
+
+```javascript
+    } else {
+      reject(Error(request.statusText))
+    }
+  }
+
+  request.onerror = function() {
+    new Error("No Results Found")
+  }
+  request.send()
+})
+}
+```
+
+Lastly, I called the function 3 times with different years to test several things. I wanted to test that it'll return the data in order even with multiple calls. Also, I knew the 2020 call would return no data so I wanted to make sure it would throw an error, even when a successful call is being made. Or you could just comment out either and test them one at a time.
+
+```javascript
+getMovies(2010)
+getMovies(2012)
+getMovies(2020)
+```
+
+#### Full Code
+
+```javascript
+function getMovies(year) {
+  const url = `https://jsonmock.hackerrank.com/api/movies?Year=${year}`
+
+  const promiseArray = []
+
+  return new Promise(function(resolve, reject) {
+    const request = new XMLHttpRequest()
+
+    request.open("GET", url)
+
+    request.onload = function() {
+      if (request.status === 200) {
+        const results = JSON.parse(this.response)
+
+        resolve(request.response)
+
+        var length = results.data.length
+
+        if (length < 1) {
+          console.error(`ERROR: No results found for ${year}'s query!`)
+
+          return promiseArray
+        } else {
+          document.write(`<h1>Movies from the ${year}</h1>`)
+
+          for (i = 0; i <= length - 1; i++) {
+            promiseArray.push(results.data[i].Title)
+
+            document.write(`
+                <ul>
+                  <li key=${results.data[i].imdbID}>${results.data[i].Title}</li>
+                </ul>`)
+          }
+        }
+      } else {
+        reject(Error(request.statusText))
+      }
+    }
+
+    request.onerror = function() {
+      new Error("No Results Found")
+    }
+    request.send()
+  })
+}
+getMovies(2010)
+getMovies(2012)
+getMovies(2020)
+```
+
+---
+
+### 02 - Python: Word Histogram
+
+**Prompt:** _Create a histogram of words from given statement._
+
+So by histogram, basically what we want is a frequency counter. We want to parse the sentence and return a list of each word and the number of times that word was "seen" next to it. For instance if the word `"the"` occurs twice in the sentence our program should print out `the : 2`. The prompt also asked us to add that color (`:`) between the word and the occurance count.
+
+So we start with our given sentence and in our function I created an empty dictionary to store our key:value (word:count) pairs. I started by calling `.split()` on the sentence, which splits the sentence up by word, and it'll ignore the newline chracters `\n` so this is a simple way to divvy up the sentence by _actual_ word.
+
+```python
+sentence = "This line is not the end.\nThis line will be the last!\nOne more thing Tulip is dog-friendly.
+
+def histrogram(sentence):
+  d = {}
+
+  sentence = sentence.split()
+```
+
+This is the core logic of our hash map. Basically we're iterating over our list of words in our `sentence` and for word (`w`) in `sentence` we'll assess it and do one of two things. If we don't have this word in our dictionary than we'll add it. That's the `else` case. If we have the word (`w`) in our dictionary (`d`) than we'll add 1 to our count of said word, meaning we've seen it a consecutive time. This will keep a running count of the occurence of each word in the sentence.
+
+```python
+for w in sentence:
+  if w in d:
+    d[w] += 1
+  else:
+    d[w] = 1
+```
+
+The individual **WORDS** are our **_keys_** and the frequency **COUNT** is the **_value_** in our `key:value` pairs. The `d.items()` just allows us to iterate of the pairs. So when we say `for k, v` we're saying "for keys & values in our dictionary..." we want to print the value of `k` (key), which will be the literal word in `sentence` and the concat a space, a colon, and then another space while finally print the count. We convert the number (type `int`) to a string so we can print it to the console.
+
+Lastly, outside the function definition, we call the function and pass the `sentence` into it.
+
+```python
+  for k, v in d.items():
+    print(k + " : " + str(v))
+
+histrogram(sentence)
+```
+
+#### Full Code
+
+```python
+sentence = "This line is not the end.\nThis line will be the last!\nOne more thing Tulip is dog-friendly."
+
+def histrogram(sentence):
+  d = {}
+
+  sentence = sentence.split()
+
+  for w in sentence:
+    if w in d:
+      d[w] += 1
+    else:
+      d[w] = 1
+
+  for k, v in d.items():
+    print(k + " : " + str(v))
+
+
+histrogram(sentence)
+```
+
+---
+
+### 03 - React: Username Validation
 
 **Prompt:** _Create input box, user adds a username that must be minimum of 4 characters long and unique. To verify it’s unique, I had to hit an API that checked it against their database and returned true vs. false._
 
@@ -157,68 +354,9 @@ export default function App() {
 }
 ```
 
-### 02 - Python: Word Histogram
+---
 
-**Prompt:** _Create a histogram of words from given statement._
-
-So by histogram, basically what we want is a frequency counter. We want to parse the sentence and return a list of each word and the number of times that word was "seen" next to it. For instance if the word `"the"` occurs twice in the sentence our program should print out `the : 2`. The prompt also asked us to add that color (`:`) between the word and the occurance count.
-
-So we start with our given sentence and in our function I created an empty dictionary to store our key:value (word:count) pairs. I started by calling `.split()` on the sentence, which splits the sentence up by word, and it'll ignore the newline chracters `\n` so this is a simple way to divvy up the sentence by _actual_ word.
-
-```python
-sentence = "This line is not the end.\nThis line will be the last!\nOne more thing Tulip is dog-friendly.
-
-def histrogram(sentence):
-  d = {}
-
-  sentence = sentence.split()
-```
-
-This is the core logic of our hash map. Basically we're iterating over our list of words in our `sentence` and for word (`w`) in `sentence` we'll assess it and do one of two things. If we don't have this word in our dictionary than we'll add it. That's the `else` case. If we have the word (`w`) in our dictionary (`d`) than we'll add 1 to our count of said word, meaning we've seen it a consecutive time. This will keep a running count of the occurence of each word in the sentence.
-
-```python
-for w in sentence:
-  if w in d:
-    d[w] += 1
-  else:
-    d[w] = 1
-```
-
-The individual **WORDS** are our **_keys_** and the frequency **COUNT** is the **_value_** in our `key:value` pairs. The `d.items()` just allows us to iterate of the pairs. So when we say `for k, v` we're saying "for keys & values in our dictionary..." we want to print the value of `k` (key), which will be the literal word in `sentence` and the concat a space, a colon, and then another space while finally print the count. We convert the number (type `int`) to a string so we can print it to the console.
-
-Lastly, outside the function definition, we call the function and pass the `sentence` into it.
-
-```python
-  for k, v in d.items():
-    print(k + " : " + str(v))
-
-histrogram(sentence)
-```
-
-#### Full Code
-
-```python
-sentence = "This line is not the end.\nThis line will be the last!\nOne more thing Tulip is dog-friendly."
-
-def histrogram(sentence):
-  d = {}
-
-  sentence = sentence.split()
-
-  for w in sentence:
-    if w in d:
-      d[w] += 1
-    else:
-      d[w] = 1
-
-  for k, v in d.items():
-    print(k + " : " + str(v))
-
-
-histrogram(sentence)
-```
-
-### 03 - Vue: Search By Ingredient
+### 04 - Vue: Search By Ingredient
 
 **Prompt:** _Create a way to filter the pizzas by topping._
 
