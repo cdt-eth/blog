@@ -7,8 +7,8 @@ import SEO from "../components/seo"
 
 class IndexPage extends React.Component {
   render() {
-    // const siteTitle = "Christian."
-    const siteTitle = "Apple"
+    const siteTitle = "Christian."
+    // const siteTitle = "Apple"
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
