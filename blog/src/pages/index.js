@@ -70,16 +70,14 @@ class IndexPage extends React.Component {
         </div>
 
         <p>
-          I'm a software engineer with a past in graphic and web design. My
-          focus is on iterative project improvements and excellent UX/UI design.
-          I'm currently teaching myself Swift for iOS development and Golang for
-          server-side. I'm in{" "}
+          I'm a self-taught frontend engineer. I have design and product
+          ownership experience. I'm currently in{" "}
           <a href="https://omscs.gatech.edu/" target="_blank" rel="noreferrer">
             grad school at Georgia Tech
           </a>{" "}
-          getting a Master's of Computer Science with a concentation in
-          computing systems. This blog serves as a record of my projects,
-          accomplishments, and learnings.
+          getting a Master of Computer Science with a concentation in computing
+          systems. Here I blog about my projects, accomplishments, and
+          learnings.
         </p>
         {/* <p>
           This blog serves as a record of my projects, accomplishments, and
